@@ -1,7 +1,9 @@
 cats-scalatest
-================
+================-
+[![Build Status](https://travis-ci.org/IronCoreLabs/cats-scalatest.svg?branch=master)](https://travis-ci.org/IronCoreLabs/cats-scalatest)
+[![codecov.io](https://codecov.io/github/IronCoreLabs/cats-scalatest/coverage.svg?branch=master)](https://codecov.io/github/IronCoreLabs/cats-scalatest?branch=master)
 
-Scalatest bindings for scalaz.  Inspired by scalaz-scalatest.
+Scalatest bindings for cats.  Inspired by scalaz-scalatest.
 
 Apache 2.0 licensed.
 
