@@ -4,6 +4,8 @@ organization := "com.ironcorelabs"
 
 licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0"))
 
+homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest"))
+
 publishMavenStyle := true
 
 publishArtifact in Test := false
@@ -23,14 +25,6 @@ publishTo := {
 }
 
 pomExtra := (
-  <url>https://ironcorelabs.com/davenport</url>
-    <licenses>
-      <license>
-        <name>Apache2</name>
-        <url>http://www.opensource.org/licenses/Apache-2.0</url>
-        <distribution>repo</distribution>
-      </license>
-    </licenses>
     <scm>
       <url>git@github.com:IronCoreLabs/cats-scalatest.git</url>
       <connection>scm:git@github.com:IronCoreLabs/cats-scalatest.git</connection>
