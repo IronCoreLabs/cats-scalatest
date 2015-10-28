@@ -1,21 +1,16 @@
 language: scala
 scala:
-  - 2.10.5
-  - 2.11.7
-jdk:
-  - oraclejdk8
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
+- 2.10.5
+- 2.11.7
 cache:
   directories:
   - "$HOME/.ivy2/cache"
   - "$HOME/.sbt/boot/"
 script:
 - sbt ++$TRAVIS_SCALA_VERSION scalastyle compile
+- sbt ++$TRAVIS_SCALA_VERSION coverage test
+after_success:
+- bash <(curl -s https://codecov.io/bash)
 notifications:
   slack:
-    on_success: change
-    on_failure: always
-    secure: Ep0GkNkPcrthphR+DdlDpZORCv6wh6mHOIni79BasJWBDS1VZLuVRrHi9dgFU5bDxqbE31NBED0seOGS9ZNl6Z+m/3FOg/cGZ66IWXpEnnpcjyg98DOyHdY+Zer2KgnZwr9mNlVVOX2mr2ytGBLmTYYGsN34TcKnsTboei8454GV2AeYiocRjwFUim4VuRT0v4z6m4pE4tUATVg605eSLfjU5lAT64DZNtVHtMy8EQ9I4NtXAox59hAhe3hqJFQ+oZwC9uuOLxsYazmgeUHf9Z88PJDZQN9zr7FTSnjB//Wl6W/16HJ1RGD44gqoOZOfPQ/SXZYpNtmOUiwn3qBwre55ewYRRz/mYQ/pzvFPu2NAY0lpVVYN9/OAUIp1SpThGrkebHAm0h/T1FVv3+FLPKvIzybQ9GB+GoWoleKCDQdYj6RMVm9c0Y+1J0yauRltwzRf8RZ2sWxdrduZK3aNVh8ePG0K1KFeLWDlGwBkMJfOEa5xiw7OWb+SsRaTcKl8JnfLFGWW5YBdbmZ1NFmrE8H2ySyf0f4tp3sC26c19bN2XqEJ83XE5dYtKXIVMPitz2kTRcxteNRFHwHy4eepSfZ+oTtkYu5eJJfhTkPrzmiMGn9i1XBXh7ON5OrzhLOTRMNM6xQpn1zjGecRIfjWTu2fvxNPv5QLrOxPl3Db3FQ=
-
+    secure: Nn7l55GE56n+wrOGmpFxrZb6KMhT/rQd/LGDZzqfkphGLaAOFFycfLVOSJ3cftFpBPYi2nOLDJbWXAe5MNJopJlr75iujqi+MLrqdGH8uynXsREJJVxOTm2dQAw094aOLfylxN0jWLrxckQ1Ps5ESRuHAMnm/36/zhS78z+xC4jzi06vbI7+kWo/DnRvHCq5Nz5F/f1cHJfqebQbaFNiLCg9f+rlmREfJG/54dT+tdMO8NAbTJR4GHl5IX0UNUkhz30Obtxax+Lt1zQe0TigCbO4KdoownuO5aHAkoLtbOpiTlwXkMARJJC9/TBORWM5dLISvXwlKwd1KOS2JI5NJWATsbBnzEqS/DfV0sp6wWucO3TpgPVqdIpgOOnKEszpr45Facyg3/Zjjs0K/Bo35BTdWrhKBTOBrbrcuCs88i9sy/H4G565enfVS9JbWhFxMi5dZFii3QQyBUwKCjQn0ytC699pxLQ8fs1NsqhBIZDgsiXIV6e6fdpUUY9nvmgjhttPi6JImBbbht/6BSn2UQm8Z3uvEpjYdurKwkK4b404jXzDhcqCyZH21vGGaTV3TKYdR/F9rSnCFXlOCEoFmO7qOsePcSIhZ5VHOi2M+Rmxr/5V88eCtte0Ck/JpkcwpAv86S7DPQFOADdJaFfIBO9ZuhoQEEkMGiecv/ALBYI=
