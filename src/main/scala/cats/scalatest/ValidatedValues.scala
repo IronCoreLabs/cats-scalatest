@@ -44,7 +44,7 @@ trait ValidatedValues {
     }
 
     /**
-     * Allow .leftValue on an validated to extract the invalid side. Like .value, but for the invalid.
+     * Allow .leftValue on an validated to extract the invalid side. Like .value, but for the `Invalid`.
      */
     def leftValue: E = validated match {
       case Valid(right) =>
@@ -53,7 +53,6 @@ trait ValidatedValues {
       case Invalid(left) => left
     }
   }
-
 }
 
 /**
@@ -71,7 +70,7 @@ trait ValidatedValues {
  *   result.value should be &gt; 15
  * </pre>
  *
- * Where it only matches if result is `Valid(9)`
+ * Where it only matches if result is both valid and greater than 15.
  *
  * Otherwise your test will fail, indicating that it was an Invalid instead of Valid
  *

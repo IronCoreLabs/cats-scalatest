@@ -10,37 +10,37 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
   "ValidatedMatchers" should {
     val simpleFailureNel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList(thisRecord, thisTobacconist))
 
-    "Match one specific element in a Validation failure NEL" in {
-      simpleFailureNel should haveFailure(thisRecord)
+    "Match one specific element in an Invalid NEL" in {
+      simpleFailureNel should haveInvalid(thisRecord)
     }
 
-    "Match multiple specific elements in a Validation failure NEL" in {
-      simpleFailureNel should (haveFailure(thisRecord) and
-        haveFailure(thisTobacconist))
+    "Match multiple specific elements in an Invalid NEL" in {
+      simpleFailureNel should (haveInvalid(thisRecord) and
+        haveInvalid(thisTobacconist))
     }
 
-    "Match a specific element of a single Validation failure" in {
-      Invalid(thisRecord) should beFailure(thisRecord)
+    "Match a specific element of a single Invalid" in {
+      Invalid(thisRecord) should beInvalid(thisRecord)
     }
 
-    "Test whether a Validation instance is a failure w/o specific element value" in {
-      Invalid(thisTobacconist) should be(failure)
+    "Test whether a Validated instance is a Invalid w/o specific element value" in {
+      Invalid(thisTobacconist) should be(invalid)
     }
 
-    "By negating 'failure', test whether a Validation instance is a success w/o specific element value" in {
-      Valid(hovercraft) should not be (failure)
+    "By negating 'invalid', test whether a Validated instance is a Valid" in {
+      Valid(hovercraft) should not be (invalid)
     }
 
-    "Test whether a Validation instance is a success w/o specific element value" in {
-      Valid(hovercraft) should be(success)
+    "Test whether a Validated instance is a Valid" in {
+      Valid(hovercraft) should be(valid)
     }
 
-    "By negating 'success', test whether a Validation instance is a failure w/o specific element value" in {
-      Invalid(thisTobacconist) should not be (success)
+    "By negating 'valid', test whether a Validated instance is an invalid" in {
+      Invalid(thisTobacconist) should not be (valid)
     }
 
-    "Match a specific element of a single Validation success" in {
-      Valid(hovercraft) should beSuccess(hovercraft)
+    "Match a specific element of a single Valid" in {
+      Valid(hovercraft) should beValid(hovercraft)
     }
   }
 }
