@@ -42,7 +42,7 @@ trait XorValues {
       xor match {
         case Xor.Right(right) => right
         case Xor.Left(left) =>
-          throw new TestFailedException(sde => Some(s"$left is an Xor.Left, expected an Xor.Right."), None,
+          throw new TestFailedException(sde => Some(s"'$left' is an Xor.Left, expected an Xor.Right."), None,
             StackDepthHelpers.getStackDepthFun("XorValues.scala", "value"))
       }
     }
@@ -54,7 +54,7 @@ trait XorValues {
     def leftValue: E = {
       xor match {
         case Xor.Right(right) =>
-          throw new TestFailedException(sde => Some(s"$right is Valid, expected Invalid."), None,
+          throw new TestFailedException(sde => Some(s"'$right' is Valid, expected Invalid."), None,
             StackDepthHelpers.getStackDepthFun("XorValues.scala", "leftValue"))
         case Xor.Left(left) => left
       }

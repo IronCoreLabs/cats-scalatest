@@ -37,19 +37,19 @@ trait ValidatedValues {
    */
   final class Validatable[E, T](validated: Validated[E, T]) {
     def value: T = validated match {
-      case Valid(right) => right
+      case Valid(valid) => valid
       case Invalid(left) =>
-        throw new TestFailedException(sde => Some(s"$left is Invalid, expected Valid."), None,
+        throw new TestFailedException(sde => Some(s"'$left' is Invalid, expected Valid."), None,
           StackDepthHelpers.getStackDepthFun("ValidatedValues.scala", "value"))
     }
 
     /**
-     * Allow .leftValue on an validated to extract the invalid side. Like .value, but for the `Invalid`.
+     * Allow .invalidValue on an validated to extract the invalid side. Like .value, but for the `Invalid`.
      */
-    def leftValue: E = validated match {
-      case Valid(right) =>
-        throw new TestFailedException(sde => Some(s"$right is Valid, expected Invalid."), None,
-          StackDepthHelpers.getStackDepthFun("ValidatedValues.scala", "leftValue"))
+    def invalidValue: E = validated match {
+      case Valid(valid) =>
+        throw new TestFailedException(sde => Some(s"'$valid' is Valid, expected Invalid."), None,
+          StackDepthHelpers.getStackDepthFun("ValidatedValues.scala", "invalidValue"))
       case Invalid(left) => left
     }
   }
