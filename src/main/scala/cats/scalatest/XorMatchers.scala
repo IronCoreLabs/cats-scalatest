@@ -40,8 +40,8 @@ final private[scalatest] class BeCatsRightXorMatcher[T](element: T) extends Matc
   def apply(xor: _ Xor T): MatchResult = {
     MatchResult(
       xor.fold(_ => false, _ == element),
-      s"$xor did not contain an Xor.Right element matching '$element'.",
-      s"$xor contained an Xor.Right element matching '$element', but should not have."
+      s"'$xor' did not contain an Xor.Right element matching '$element'.",
+      s"'$xor' contained an Xor.Right element matching '$element', but should not have."
     )
   }
 }
@@ -50,8 +50,8 @@ final private[scalatest] class BeCatsLeftXor[E](element: E) extends Matcher[E Xo
   def apply(xor: E Xor _): MatchResult = {
     MatchResult(
       xor.fold(_ == element, _ => false),
-      s"$xor did not contain an Xor.Left element matching '$element'.",
-      s"$xor contained an Xor.Left element matching '$element', but should not have."
+      s"'$xor' did not contain an Xor.Left element matching '$element'.",
+      s"'$xor' contained an Xor.Left element matching '$element', but should not have."
     )
   }
 }
@@ -59,16 +59,16 @@ final private[scalatest] class BeCatsLeftXor[E](element: E) extends Matcher[E Xo
 final private[scalatest] class IsCatsLeftXorMatcher[E] extends BeMatcher[E Xor _] {
   def apply(xor: E Xor _): MatchResult = MatchResult(
     xor.isLeft,
-    s"$xor was not an Xor.Left, but should have been.",
-    s"$xor was an Xor.Left, but should *NOT* have been."
+    s"'$xor' was not an Xor.Left, but should have been.",
+    s"'$xor' was an Xor.Left, but should *NOT* have been."
   )
 }
 
 final private[scalatest] class IsCatsRightXorMatcher[T] extends BeMatcher[_ Xor T] {
   def apply(xor: _ Xor T): MatchResult = MatchResult(
     xor.isRight,
-    s"$xor was not an Xor.Right, but should have been.",
-    s"$xor was an Xor.Right, but should *NOT* have been."
+    s"'$xor' was not an Xor.Right, but should have been.",
+    s"'$xor' was an Xor.Right, but should *NOT* have been."
   )
 }
 

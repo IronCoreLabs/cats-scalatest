@@ -23,16 +23,16 @@ class ValidatedValuesSpec extends TestBase {
     }
   }
 
-  "leftValue on Validated" should {
-    "return the value if it's left" in {
+  "invalidValue on Validated" should {
+    "return the value if it's invalid" in {
       val r = Validated.Invalid(thisRecord)
-      r.leftValue should ===(thisRecord)
+      r.invalidValue should ===(thisRecord)
     }
 
-    "throw TestFailedException if the Validated is right" in {
+    "throw TestFailedException if the Validated is Valid" in {
       val r = Validated.Valid(thisRecord)
       val caught = intercept[TestFailedException] {
-        r.leftValue
+        r.invalidValue
       }
       caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
