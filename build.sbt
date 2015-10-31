@@ -11,14 +11,10 @@ scalacOptions ++= Seq(
   "-unchecked"
 )
 
+resolvers += Resolver.sonatypeRepo("releases")
+
 libraryDependencies ++= Seq(
   "org.spire-math" %% "cats-core" % "0.2.0",
   "org.spire-math" %% "cats-macros" % "0.2.0",
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
-
-resolvers += Resolver.sonatypeRepo("releases")
-
-releaseCrossBuild := true
-releasePublishArtifactsAction := PgpKeys.publishSigned.value
-
