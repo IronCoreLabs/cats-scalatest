@@ -10,13 +10,22 @@ Scalatest bindings for cats.  Inspired by scalaz-scalatest.
 Apache 2.0 licensed.
 
 
+## Setup
+
+We currently crossbuild for Scala 2.10 & 2.11.
+
+To include this in your project, add the dependency (substituting version # as necessary):
+
+```
+libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "1.0.0" % "test"
+```
+This version is built against [Cats](https://github.com/non/cats) `0.2.0` and [ScalaTest](http://www.scalatest.org/) `2.2.4`.
+
+## What does this provide?
+
 Matchers & Helpers are presently offered for testing of the following cats concepts:
 * `Xor`
 * `Validated`
-
-## Supported Versions  
-
-We currently crossbuild for Scala 2.10 & 2.11.
 
 ## Usage
 
