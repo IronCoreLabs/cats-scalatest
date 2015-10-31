@@ -2,6 +2,8 @@ cats-scalatest
 ================
 [![Build Status](https://travis-ci.org/IronCoreLabs/cats-scalatest.svg?branch=master)](https://travis-ci.org/IronCoreLabs/cats-scalatest)
 [![codecov.io](https://codecov.io/github/IronCoreLabs/cats-scalatest/coverage.svg?branch=master)](https://codecov.io/github/IronCoreLabs/cats-scalatest?branch=master)
+[![scaladoc](https://javadoc-badge.appspot.com/com.ironcorelabs/cats-scalatest_2.11.svg?label=scaladoc)](https://javadoc-badge.appspot.com/com.ironcorelabs/cats-scalatest_2.11)
+
 
 Scalatest bindings for cats.  Inspired by scalaz-scalatest.
 
