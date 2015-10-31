@@ -1,5 +1,4 @@
 name := "cats-scalatest"
-version := "0.1.0"
 organization := "com.ironcorelabs"
 
 scalaVersion := "2.11.7"
@@ -19,3 +18,7 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += Resolver.sonatypeRepo("releases")
+
+releaseCrossBuild := true
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
