@@ -8,40 +8,47 @@ trait ValidatedMatchers {
 
   /**
    * Checks if a `cats.data.ValidatedNel` contains a specific failure element
-   * Usage: `
-   *   validationObj should haveFailure (someErrorMessageOrObject)
-   * `
+   * Usage:
+   * {{{
+   *   validationObj should haveInvalid (someErrorMessageOrObject)
+   * }}}
    * Can also be used to test multiple elements: `
-   *  validationObj should (haveFailure (someErrorMessageOrObject) and
-   *                       haveFailure (someOtherErrorMessageOrObject))
-   * `
+   * {{{
+   *  validationObj should (haveInvalid (someErrorMessageOrObject) and
+   *                       haveInvalid (someOtherErrorMessageOrObject))
+   * }}}
    *
    */
-  def haveFailure[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
+  def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
 
   /**
-   * Checks if a `cats.data.Validated` is a specific failure element.
+   * Checks if a `cats.data.Validated` is a specific `Invalid` element.
    */
-  def beFailure[E](element: E): Matcher[Validated[E, _]] = new BeCatsInvalidMatcher[E](element)
+  def beInvalid[E](element: E): Matcher[Validated[E, _]] = new BeCatsInvalidMatcher[E](element)
 
   /**
-   * Checks to see if the `cats.data.Validated` is a specific failure element.
+   * Checks if the `cats.data.Validated` is an `Invalid`.
    */
-  def failure[E]: BeMatcher[Validated[E, _]] = new IsCatsInvalidMatcher[E]
+  def invalid[E]: BeMatcher[Validated[E, _]] = new IsCatsInvalidMatcher[E]
 
   /**
-   * Checks if a `cats.data.Validated` is an instance of Valid.
+   * Checks if a `cats.data.Validated` is a `Valid`.
+   *
    */
-  def success[T]: BeMatcher[Validated[_, T]] = new IsCatsValidMatcher[T]
+  def valid[T]: BeMatcher[Validated[_, T]] = new IsCatsValidMatcher[T]
 
   /**
-   * Checks if a `cats.data.Validated` is a specific success element.
+   * Checks if a `cats.data.Validated` is an instance of `Valid`.
    */
-  def beSuccess[T](element: T): Matcher[Validated[_, T]] = new BeValidMatcher[T](element)
+  def beValid[T](element: T): Matcher[Validated[_, T]] = new BeValidMatcher[T](element)
 }
 
 /**
- * Import singleton in case you prefer to import rather than mix in
+ * Import singleton in case you prefer to import rather than mix in.
+ * {{{
+ * import ValidatedMatchers._
+ * result should beValid (100)
+ * }}}
  */
 final object ValidatedMatchers extends ValidatedMatchers
 
