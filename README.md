@@ -14,12 +14,20 @@ Apache 2.0 licensed.
 
 We currently crossbuild for Scala 2.10 & 2.11.
 
+Because cats is such a young project the versioning is not quite following the semantic versioning guidelines (yet). Use the below table to understand
+which version of the cats-scalatest library you need.
+
+|Cats-Scalatest Version | Cats Version  | Scalatest Version |
+|-----------------------| ------------- | ----------------- |
+| 1.0.1                 | 0.2.0         | 2.2.4             |
+| 1.1.0                 | 0.4.0         | 2.2.4             |
+
 To include this in your project, add the dependency:
 
 ```
-libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "1.0.1" % "test"
+//For cats 0.4.0, see above chart
+libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "1.1.0" % "test"
 ```
-This version is built against [Cats](https://github.com/non/cats) `0.2.0` and [ScalaTest](http://www.scalatest.org/) `2.2.4`.
 
 ## What does this provide?
 
