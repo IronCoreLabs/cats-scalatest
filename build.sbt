@@ -14,7 +14,7 @@ scalacOptions ++= Seq(
 resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies ++= Seq(
-  "org.spire-math" %% "cats-core" % "0.2.0",
-  "org.spire-math" %% "cats-macros" % "0.2.0",
+  "org.typelevel" %% "cats-core" % "0.4.0",
+  "org.typelevel" %% "cats-macros" % "0.4.0",
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
