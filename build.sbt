@@ -14,7 +14,7 @@ scalacOptions ++= Seq(
 resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % "0.4.0",
-  "org.typelevel" %% "cats-macros" % "0.4.0",
+  "org.typelevel" %% "cats-core" % "0.4.1",
+  "org.typelevel" %% "cats-macros" % "0.4.1",
   "org.scalatest" %% "scalatest" % "2.2.4"
 )
