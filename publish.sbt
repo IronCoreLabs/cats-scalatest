@@ -4,6 +4,8 @@ homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest"))
 
 publishMavenStyle := true
 
+releaseCrossBuild := true
+
 publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
