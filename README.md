@@ -53,7 +53,7 @@ This makes the matchers in `XorMatchers` available inside the scope of your test
 You can also import explicitly from a provided object:
 
 ```scala
-import org.typelevel.scalatest.XorMatchers
+import cats.scalatest.XorMatchers
 
 class MySillyWalkSpec extends FlatSpec with Matchers { 
   import XorMatchers._
