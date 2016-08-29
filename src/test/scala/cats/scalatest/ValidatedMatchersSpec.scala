@@ -8,7 +8,7 @@ import cats.data.Validated.{ Valid, Invalid }
 class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
 
   "ValidatedMatchers" should {
-    val simpleFailureNel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList(thisRecord, thisTobacconist))
+    val simpleFailureNel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList.of(thisRecord, thisTobacconist))
 
     "Match one specific element in an Invalid NEL" in {
       simpleFailureNel should haveInvalid(thisRecord)
