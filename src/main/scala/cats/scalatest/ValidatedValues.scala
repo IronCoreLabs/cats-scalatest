@@ -1,9 +1,10 @@
 package cats.scalatest
 
-import org.scalatest.exceptions.TestFailedException
+import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
 
 import cats.data.Validated
 import Validated.{ Valid, Invalid }
+import org.scalactic.source
 
 trait ValidatedValues {
   import scala.language.implicitConversions
@@ -13,8 +14,8 @@ trait ValidatedValues {
    *
    * @param validated the `cats.data.Validated` on which to add the `value` method
    */
-  implicit def convertValidatedToValidatable[E, T](validated: Validated[E, T]): Validatable[E, T] =
-    new Validatable(validated)
+  implicit def convertValidatedToValidatable[E, T](validated: Validated[E, T])(implicit pos: source.Position): Validatable[E, T] =
+    new Validatable(validated, pos)
 
   /**
    * Container class for matching success
@@ -35,12 +36,11 @@ trait ValidatedValues {
    *
    * @see org.scalatest.OptionValues.Valuable
    */
-  final class Validatable[E, T](validated: Validated[E, T]) {
+  final class Validatable[E, T](validated: Validated[E, T], pos: source.Position) {
     def value: T = validated match {
       case Valid(valid) => valid
       case Invalid(left) =>
-        throw new TestFailedException(sde => Some(s"'$left' is Invalid, expected Valid."), None,
-          StackDepthHelpers.getStackDepthFun("ValidatedValues.scala", "value"))
+        throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."), None, pos)
     }
 
     /**
@@ -48,8 +48,7 @@ trait ValidatedValues {
      */
     def invalidValue: E = validated match {
       case Valid(valid) =>
-        throw new TestFailedException(sde => Some(s"'$valid' is Valid, expected Invalid."), None,
-          StackDepthHelpers.getStackDepthFun("ValidatedValues.scala", "invalidValue"))
+        throw new TestFailedException((_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."), None, pos)
       case Invalid(left) => left
     }
   }

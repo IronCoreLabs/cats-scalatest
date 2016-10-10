@@ -16,5 +16,5 @@ resolvers += Resolver.sonatypeRepo("releases")
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % "0.7.2",
   "org.typelevel" %% "cats-macros" % "0.7.2",
-  "org.scalatest" %% "scalatest" % "2.2.6"
+  "org.scalatest" %% "scalatest" % "3.0.0"
 )

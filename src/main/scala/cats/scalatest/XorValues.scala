@@ -1,9 +1,10 @@
 package cats.scalatest
 
-import org.scalatest.exceptions.TestFailedException
+import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
 
 import cats.data.Xor
 import cats.syntax.xor._
+import org.scalactic.source
 
 trait XorValues {
   import scala.language.implicitConversions
@@ -13,7 +14,7 @@ trait XorValues {
    *
    * @param xor the `cats.data.Xor` on which to add the `value` method
    */
-  implicit def convertXorToXorable[E, T](xor: E Xor T): Xorable[E, T] = new Xorable(xor)
+  implicit def convertXorToXorable[E, T](xor: E Xor T)(implicit pos: source.Position): Xorable[E, T] = new Xorable(xor, pos)
 
   /**
    * Container class for matching success
@@ -34,7 +35,7 @@ trait XorValues {
    *
    * @see org.scalatest.OptionValues.Valuable
    */
-  final class Xorable[E, T](xor: E Xor T) {
+  final class Xorable[E, T](xor: E Xor T, pos: source.Position) {
     /**
      * Extract the `Xor.Right` from the Xor. If the value is not a right the test will fail.
      */
@@ -42,8 +43,7 @@ trait XorValues {
       xor match {
         case Xor.Right(right) => right
         case Xor.Left(left) =>
-          throw new TestFailedException(sde => Some(s"'$left' is an Xor.Left, expected an Xor.Right."), None,
-            StackDepthHelpers.getStackDepthFun("XorValues.scala", "value"))
+          throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is an Xor.Left, expected an Xor.Right."), None, pos)
       }
     }
 
@@ -54,8 +54,7 @@ trait XorValues {
     def leftValue: E = {
       xor match {
         case Xor.Right(right) =>
-          throw new TestFailedException(sde => Some(s"'$right' is Valid, expected Invalid."), None,
-            StackDepthHelpers.getStackDepthFun("XorValues.scala", "leftValue"))
+          throw new TestFailedException((_: StackDepthException) => Some(s"'$right' is Valid, expected Invalid."), None, pos)
         case Xor.Left(left) => left
       }
     }
