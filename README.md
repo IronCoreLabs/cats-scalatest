@@ -25,12 +25,13 @@ which version of the cats-scalatest library you need.
 | 1.3.0                 | 0.6.{0,1}     | 2.2.6             |
 | 1.4.0                 | 0.7.0         | 2.2.6             |
 | 1.5.0                 | 0.7.2         | 2.2.6             |
+| 2.0.0                 | 0.7.2         | 3.0.0             |
 
 To include this in your project, add the dependency:
 
 ```
-//For cats 0.7.2, see above chart for others.
-libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "1.5.0" % "test"
+//For cats 0.7.2 and scalatest 3.0, see above chart for others.
+libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "2.0.0" % "test"
 ```
 
 ## What does this provide?
