@@ -12,7 +12,7 @@ Apache 2.0 licensed.
 
 ## Setup
 
-We currently crossbuild for Scala 2.10 & 2.11.
+We currently crossbuild for Scala 2.10, 2.11 and 2.12.
 
 Because cats is such a young project the versioning is not quite following the semantic versioning guidelines (yet). Use the below table to understand
 which version of the cats-scalatest library you need.
@@ -26,18 +26,19 @@ which version of the cats-scalatest library you need.
 | 1.4.0                 | 0.7.0         | 2.2.6             |
 | 1.5.0                 | 0.7.2         | 2.2.6             |
 | 2.0.0                 | 0.7.2         | 3.0.0             |
+| 2.1.0                 | 0.8.0         | 3.0.0             |
 
 To include this in your project, add the dependency:
 
 ```
-//For cats 0.7.2 and scalatest 3.0, see above chart for others.
-libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "2.0.0" % "test"
+//For cats 0.8.0 and scalatest 3.0, see above chart for others.
+libraryDependencies += "com.ironcorelabs" %% "cats-scalatest" % "2.1.0" % "test"
 ```
 
 ## What does this provide?
 
 Matchers & Helpers are presently offered for testing of the following cats concepts:
-* `Xor`
+* `Either`
 * `Validated`
 
 ## Usage
@@ -47,20 +48,20 @@ There are two ways to use the provided matchers:
 You can mix them in:
 
 ```scala
-class MySillyWalkSpec extends FlatSpec with Matchers with XorMatchers { 
+class MySillyWalkSpec extends FlatSpec with Matchers with EitherMatchers { 
   // ...
 } 
 ```
-This makes the matchers in `XorMatchers` available inside the scope of your test. 
+This makes the matchers in `EitherMatchers` available inside the scope of your test. 
 
 
 You can also import explicitly from a provided object:
 
 ```scala
-import cats.scalatest.XorMatchers
+import cats.scalatest.EitherMatchers
 
 class MySillyWalkSpec extends FlatSpec with Matchers { 
-  import XorMatchers._
+  import EitherMatchers._
   // ...
 }
 
@@ -70,9 +71,9 @@ Also brings the matchers into scope.
 
 And now, the matchers themselves.
 
-## Xor Matchers
+## Either Matchers
 
-XorMatchers supplies the following methods:
+EitherMatchers supplies the following methods:
 
 ```
 beLeft[E](element: E)
@@ -83,19 +84,19 @@ right[T]
 
 ### Specific Element Matchers
 
-The matchers that begin with a be prefix are for matching a specific element inside of the `Xor`.
+The matchers that begin with a be prefix are for matching a specific element inside of the `Either`.
 
 Something like the following:
 
 ```
 val s = "Hello World"
-val valueInRight = Xor.Right(s)
+val valueInRight = Right(s)
 
 //This passes
 valueInRight should beRight(s)
 
 //This fails with the following message:
-//Right(Hello World) did not contain an Xor.Right element matching 'goodbye'.
+//Right(Hello World) did not contain an Right element matching 'goodbye'.
 valueInRight should beRight("goodbye")
 ```
 
@@ -103,15 +104,15 @@ The matchers work the same for `beLeft`.
 
 ### Right and Left Matchers
 
-The `left` and `right` matchers are for checking to see if the `Xor` is a right or left without caring what's inside.
+The `left` and `right` matchers are for checking to see if the `Either` is a right or left without caring what's inside.
 
 ```
   //This passes
-  Xor.Left("uh oh") should be(left)
+  Left("uh oh") should be(left)
   
   //This fails with the following message:
-  //Left(uh oh) was not an Xor.Right, but should have been.
-  Xor.Left("uh oh") should be(right)
+  //Left(uh oh) was not an Right, but should have been.
+  Left("uh oh") should be(right)
 ```
 
 ## Validated Matchers
@@ -143,12 +144,12 @@ validateNelValue should (haveInvalid("error1") and haveInvalid("error2"))
 
 ## Values Helpers
 
-A very common test idiom is to want to assert the Xor is a Left or a Right and then extract the value. For this
-we supply `XorValues`. This can be mixed into your test or imported as an object just like the matchers above, but 
-instead of providing Matchers it instead adds `value` and `leftValue` as syntax to the `Xor` type.
+A very common test idiom is to want to assert the Either is a Left or a Right and then extract the value. For this
+we supply `EitherValues`. This can be mixed into your test or imported as an object just like the matchers above, but 
+instead of providing Matchers it instead adds `value` and `leftValue` as syntax to the `Either` type.
 
 ```
-val x = Xor.Right("hello")
+val x = Right("hello")
 //Passes!
 x.value shouldBe "hello" 
 

@@ -1,13 +1,13 @@
 package cats.scalatest
 
-import cats.data.Xor
+import scala.util.{ Either, Right, Left }
 
-class XorMatchersSpec extends TestBase with XorMatchers {
-  val goodHovercraft = Xor.Right(hovercraft)
-  val badTobacconist = Xor.Left(thisTobacconist)
-  val badRecord = Xor.Left(thisRecord)
+class EitherMatchersSpec extends TestBase with EitherMatchers {
+  val goodHovercraft = Right(hovercraft)
+  val badTobacconist = Left(thisTobacconist)
+  val badRecord = Left(thisRecord)
 
-  "XorMatchers" should {
+  "EitherMatchers" should {
     "Match 'blind' invalid (i.e. not with specific element)" in {
       badTobacconist should be(left)
     }
