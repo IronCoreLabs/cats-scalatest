@@ -38,5 +38,39 @@ class ValidatedValuesSpec extends TestBase {
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
     }
   }
+
+  "valid on Validated" should {
+    "return the valid if it's a Valid" in {
+      val r = Validated.Valid(thisRecord)
+      r.valid should ===(r)
+    }
+
+    "throw TestFailedException if the Validated is Invalid" in {
+      val r: String Validated String = Validated.Invalid(thisTobacconist)
+      val caught =
+        intercept[TestFailedException] {
+          r.valid should ===(r)
+        }
+      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
+    }
+  }
+
+  "invalid on Validated" should {
+    "return the invalid if it's a Invalid" in {
+      val r = Validated.Invalid(thisTobacconist)
+      r.invalid should ===(r)
+    }
+
+    "throw TestFailedException if the Validated is Valid" in {
+      val r: String Validated String = Validated.Valid(thisRecord)
+      val caught =
+        intercept[TestFailedException] {
+          r.invalid should ===(r)
+        }
+      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
+    }
+  }
 }
 

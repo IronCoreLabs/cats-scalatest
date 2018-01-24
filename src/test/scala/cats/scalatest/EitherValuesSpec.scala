@@ -1,8 +1,5 @@
 package cats.scalatest
 
-import org.scalatest.{ FunSpec, Matchers }
-import Matchers._
-import org.scalatest.OptionValues._
 import org.scalatest.exceptions.TestFailedException
 import scala.util.{ Either, Right, Left }
 

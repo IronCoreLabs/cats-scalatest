@@ -10,7 +10,7 @@ abstract class TestBase extends WordSpec with Matchers with OptionValues {
   /**
    * Shamelessly swiped from Scalatest.
    */
-  final def thisLineNumber = {
+  final def thisLineNumber: Int = {
     val st = Thread.currentThread.getStackTrace
 
     if (!st(2).getMethodName.contains("thisLineNumber"))
