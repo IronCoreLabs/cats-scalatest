@@ -163,7 +163,7 @@ x.value shouldBe "hello"
 x.leftValue shouldBe "hello" 
 ```
 
-The same is true for the `Validated`. If you import or mixin `ValidatedMatchers` you'll be able to call `.value` to extract
+The same is true for the `Validated`. If you import or mixin `ValidatedValues` you'll be able to call `.value` to extract
 `Valid` and `.invalidValue` to extract the `Invalid` side.
 
 ## Documentation and Support
