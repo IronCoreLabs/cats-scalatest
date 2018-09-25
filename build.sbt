@@ -13,7 +13,7 @@ scalacOptions ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-lazy val catsVersion = "1.0.1"
+lazy val catsVersion = "1.2.0"
 
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % catsVersion,
