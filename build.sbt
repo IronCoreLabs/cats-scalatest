@@ -18,5 +18,5 @@ lazy val catsVersion = "1.2.0"
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % catsVersion,
   "org.typelevel" %% "cats-macros" % catsVersion,
-  "org.scalatest" %% "scalatest" % "3.0.4"
+  "org.scalatest" %% "scalatest" % "3.0.5"
 )
