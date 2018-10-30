@@ -2,7 +2,6 @@ package cats.scalatest
 
 import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
 
-import cats.syntax.either._
 import org.scalactic.source
 import scala.util.{ Either, Right, Left }
 

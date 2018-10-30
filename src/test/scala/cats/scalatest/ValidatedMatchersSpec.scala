@@ -1,8 +1,6 @@
 package cats.scalatest
 
-import org.scalatest.{ Matchers, FlatSpec }
-
-import cats.data.{ Validated, ValidatedNel, NonEmptyList }
+import cats.data.{ ValidatedNel, NonEmptyList }
 import cats.data.Validated.{ Valid, Invalid }
 
 class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {

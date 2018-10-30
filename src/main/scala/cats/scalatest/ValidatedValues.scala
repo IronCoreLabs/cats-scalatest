@@ -26,6 +26,7 @@ trait ValidatedValues {
    *
    * <pre class="stREPL">
    *   result.value should be &gt; 15
+   *   result.valid.value should be(Valid(15))
    * </pre>
    *
    * Where it only matches if result is `Valid(9)`
@@ -50,6 +51,26 @@ trait ValidatedValues {
       case Valid(valid) =>
         throw new TestFailedException((_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."), None, pos)
       case Invalid(left) => left
+    }
+
+    /**
+     * Returns the <code>Validated</code> passed to the constructor as a <code>Valid</code>, if it is a <code>Valid</code>,
+     * else throws <code>TestFailedException</code> with a detail message indicating the <code>Validated</code> was not a <code>Valid</code>.
+     */
+    def valid: Valid[T] = validated match {
+      case valid: Valid[T] => valid
+      case _ =>
+        throw new TestFailedException((_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."), None, pos)
+    }
+
+    /**
+     * Returns the <code>Validated</code> passed to the constructor as an <code>Invalid</code>, if it is an <code>Invalid</code>,
+     * else throws <code>TestFailedException</code> with a detail message indicating the <code>Validated</code> was not an <code>Invalid</code>.
+     */
+    def invalid: Invalid[E] = validated match {
+      case invalid: Invalid[E] => invalid
+      case _ =>
+        throw new TestFailedException((_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."), None, pos)
     }
   }
 }
