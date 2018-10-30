@@ -43,7 +43,7 @@ trait EitherValues {
       either match {
         case Right(right) => right
         case Left(left) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is an Left, expected an Right."), None, pos)
+          throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is a Left, expected a Right."), None, pos)
       }
     }
 
@@ -54,7 +54,7 @@ trait EitherValues {
     def leftValue: E = {
       either match {
         case Right(right) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"'$right' is Valid, expected Invalid."), None, pos)
+          throw new TestFailedException((_: StackDepthException) => Some(s"'$right' is a Right, expected a Left."), None, pos)
         case Left(left) => left
       }
     }
