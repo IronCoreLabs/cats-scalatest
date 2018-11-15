@@ -2,7 +2,7 @@ name := "cats-scalatest"
 organization := "com.ironcorelabs"
 
 scalaVersion := "2.11.12"
-crossScalaVersions := Seq("2.10.6", "2.11.12", "2.12.4")
+crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 com.typesafe.sbt.SbtScalariform.scalariformSettings
 
