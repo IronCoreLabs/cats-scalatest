@@ -1,8 +1,8 @@
 name := "cats-scalatest"
 organization := "com.ironcorelabs"
 
-scalaVersion := "2.11.12"
-crossScalaVersions := Seq("2.10.6", "2.11.12", "2.12.4")
+scalaVersion := "2.12.7"
+crossScalaVersions := Seq("2.11.12", "2.12.7")
 
 com.typesafe.sbt.SbtScalariform.scalariformSettings
 
@@ -13,7 +13,7 @@ scalacOptions ++= Seq(
 
 resolvers += Resolver.sonatypeRepo("releases")
 
-lazy val catsVersion = "1.2.0"
+lazy val catsVersion = "1.5.0"
 
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % catsVersion,
