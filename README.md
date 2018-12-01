@@ -13,7 +13,7 @@ Apache 2.0 licensed.
 
 ## Setup
 
-We currently crossbuild for Scala 2.10, 2.11 and 2.12.
+We currently crossbuild for Scala 2.11 and 2.12.
 
 Because cats is such a young project the versioning is not quite following the semantic versioning guidelines (yet). Use the below table to understand
 which version of the cats-scalatest library you need.
@@ -32,6 +32,7 @@ which version of the cats-scalatest library you need.
 | 2.2.0                 | 0.9.0         | 3.0.0             |
 | 2.3.0                 | 1.0.0-MF      | 3.0.0             |
 | 2.3.1                 | 1.0.1         | 3.0.0             |
+| 2.4.0                 | 1.5.0         | 3.0.5             |
 
 To include this in your project, add the dependency:
 
