@@ -9,7 +9,7 @@ Scalatest bindings for cats.  Inspired by scalaz-scalatest.
 
 Apache 2.0 licensed.
 
-**cats-scalatest** is a [Typelevel](http://typelevel.org/) project. This means we embrace pure, typeful, functional programming, and provide a safe and friendly environment for teaching, learning, and contributing as described in the Typelevel [Code of Conduct](http://typelevel.org/conduct.html).
+**cats-scalatest** is a [Typelevel](http://typelevel.org/) project. This means we embrace pure, typeful, functional programming, and provide a safe and friendly environment for teaching, learning, and contributing as described in the [Scala Code of Conduct](http://typelevel.org/code-of-conduct.html).
 
 ## Setup
 
