@@ -179,3 +179,6 @@ The same is true for the `Validated`. If you import or mixin `ValidatedValues` y
 
 Idea ported from [scalaz-scalatest](https://github.com/typelevel/scalaz-scalatest), which is
 primarily written by [Brendan McAdams](https://github.com/bwmcadams).
+
+Copyright (c)  2017-present  IronCore Labs, Inc.
+All rights reserved.
