@@ -6,6 +6,7 @@ lazy val catsVersion = "1.6.0"
 // the automatic root project from compiling.
 Compile / unmanagedSourceDirectories := Nil
 Test / unmanagedSourceDirectories := Nil
+publishArtifact := false
 
 lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .withoutSuffixFor(JVMPlatform)
