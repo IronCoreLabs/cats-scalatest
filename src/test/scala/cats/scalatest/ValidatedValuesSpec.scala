@@ -18,7 +18,9 @@ class ValidatedValuesSpec extends TestBase {
         intercept[TestFailedException] {
           r.value should ===(thisRecord)
         }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
     }
   }
@@ -34,7 +36,9 @@ class ValidatedValuesSpec extends TestBase {
       val caught = intercept[TestFailedException] {
         r.invalidValue
       }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
     }
   }
@@ -51,7 +55,9 @@ class ValidatedValuesSpec extends TestBase {
         intercept[TestFailedException] {
           r.valid should ===(r)
         }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
     }
   }
@@ -68,7 +74,9 @@ class ValidatedValuesSpec extends TestBase {
         intercept[TestFailedException] {
           r.invalid should ===(r)
         }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("ValidatedValuesSpec.scala")
     }
   }
