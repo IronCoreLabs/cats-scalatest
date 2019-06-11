@@ -45,3 +45,5 @@ couchbase-dev.cfg
 *.sublime-workspace
 *.sublime-project
 src/jekyll/_tutorials
+**/.bloop
+.metals

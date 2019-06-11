@@ -41,8 +41,7 @@ final private[scalatest] class BeCatsRightEitherMatcher[T](element: T) extends M
     MatchResult(
       either.fold(_ => false, _ == element),
       s"'$either' did not contain an Right element matching '$element'.",
-      s"'$either' contained an Right element matching '$element', but should not have."
-    )
+      s"'$either' contained an Right element matching '$element', but should not have.")
   }
 }
 
@@ -51,8 +50,7 @@ final private[scalatest] class BeCatsLeftEither[E](element: E) extends Matcher[E
     MatchResult(
       either.fold(_ == element, _ => false),
       s"'$either' did not contain an Left element matching '$element'.",
-      s"'$either' contained an Left element matching '$element', but should not have."
-    )
+      s"'$either' contained an Left element matching '$element', but should not have.")
   }
 }
 
@@ -60,15 +58,13 @@ final private[scalatest] class IsCatsLeftEitherMatcher[E] extends BeMatcher[E Ei
   def apply(either: E Either _): MatchResult = MatchResult(
     either.isLeft,
     s"'$either' was not an Left, but should have been.",
-    s"'$either' was an Left, but should *NOT* have been."
-  )
+    s"'$either' was an Left, but should *NOT* have been.")
 }
 
 final private[scalatest] class IsCatsRightEitherMatcher[T] extends BeMatcher[_ Either T] {
   def apply(either: _ Either T): MatchResult = MatchResult(
     either.isRight,
     s"'$either' was not an Right, but should have been.",
-    s"'$either' was an Right, but should *NOT* have been."
-  )
+    s"'$either' was an Right, but should *NOT* have been.")
 }
 
