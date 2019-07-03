@@ -1,6 +1,6 @@
 package cats.scalatest
 
-import org.scalatest.{ WordSpec, Matchers, OptionValues }
+import org.scalatest.{Matchers, OptionValues, WordSpec}
 
 abstract class TestBase extends WordSpec with Matchers with OptionValues {
   val thisRecord = "I will not buy this record, it is scratched."

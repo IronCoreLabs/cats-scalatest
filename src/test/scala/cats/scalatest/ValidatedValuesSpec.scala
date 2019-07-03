@@ -81,4 +81,3 @@ class ValidatedValuesSpec extends TestBase {
     }
   }
 }
-

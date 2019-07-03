@@ -1,7 +1,7 @@
 package cats.scalatest
 
 import org.scalatest.exceptions.TestFailedException
-import scala.util.{ Either, Right, Left }
+import scala.util.{Either, Left, Right}
 
 class EitherValuesSpec extends TestBase {
   import EitherValues._
@@ -43,4 +43,3 @@ class EitherValuesSpec extends TestBase {
     }
   }
 }
-
