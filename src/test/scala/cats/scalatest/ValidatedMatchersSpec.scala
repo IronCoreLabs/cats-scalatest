@@ -1,7 +1,7 @@
 package cats.scalatest
 
-import cats.data.{ ValidatedNel, NonEmptyList }
-import cats.data.Validated.{ Valid, Invalid }
+import cats.data.{NonEmptyList, ValidatedNel}
+import cats.data.Validated.{Invalid, Valid}
 
 class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
 
@@ -13,8 +13,7 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
     }
 
     "Match multiple specific elements in an Invalid NEL" in {
-      simpleFailureNel should (haveInvalid(thisRecord) and
-        haveInvalid(thisTobacconist))
+      simpleFailureNel should (haveInvalid(thisRecord).and(haveInvalid(thisTobacconist)))
     }
 
     "Match a specific element of a single Invalid" in {

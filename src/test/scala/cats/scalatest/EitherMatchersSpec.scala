@@ -1,6 +1,6 @@
 package cats.scalatest
 
-import scala.util.{ Right, Left }
+import scala.util.{Left, Right}
 
 class EitherMatchersSpec extends TestBase with EitherMatchers {
   val goodHovercraft = Right(hovercraft)
