@@ -21,7 +21,9 @@ class NonEmptyListScalaTestInstancesSpec extends TestBase {
         intercept[TestFailedException] {
           nel.loneElement should ===(thisRecord)
         }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("NonEmptyListScalaTestInstancesSpec.scala")
     }
   }
