@@ -1,9 +1,9 @@
 package cats.scalatest
 
-import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
+import org.scalatest.exceptions.{StackDepthException, TestFailedException}
 
 import org.scalactic.source
-import scala.util.{ Either, Right, Left }
+import scala.util.{Either, Left, Right}
 
 trait EitherValues {
   import scala.language.implicitConversions
@@ -13,7 +13,8 @@ trait EitherValues {
    *
    * @param either the `scala.util.Either` on which to add the `value` method
    */
-  implicit def convertEitherToEitherable[E, T](either: E Either T)(implicit pos: source.Position): Eitherable[E, T] = new Eitherable(either, pos)
+  implicit def convertEitherToEitherable[E, T](either: E Either T)(implicit pos: source.Position): Eitherable[E, T] =
+    new Eitherable(either, pos)
 
   /**
    * Container class for matching success
@@ -35,28 +36,35 @@ trait EitherValues {
    * @see org.scalatest.OptionValues.Valuable
    */
   final class Eitherable[E, T](either: E Either T, pos: source.Position) {
+
     /**
      * Extract the `Right` from the Either. If the value is not a right the test will fail.
      */
-    def value: T = {
+    def value: T =
       either match {
         case Right(right) => right
         case Left(left) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is a Left, expected a Right."), None, pos)
+          throw new TestFailedException(
+            (_: StackDepthException) => Some(s"'$left' is a Left, expected a Right."),
+            None,
+            pos
+          )
       }
-    }
 
     /**
      * Use .leftValue on an Either to extract the left side. Like .value, but for the left.
      * If the value is a right, the test will fail.
      */
-    def leftValue: E = {
+    def leftValue: E =
       either match {
         case Right(right) =>
-          throw new TestFailedException((_: StackDepthException) => Some(s"'$right' is a Right, expected a Left."), None, pos)
+          throw new TestFailedException(
+            (_: StackDepthException) => Some(s"'$right' is a Right, expected a Left."),
+            None,
+            pos
+          )
         case Left(left) => left
       }
-    }
   }
 }
 

@@ -1,9 +1,9 @@
 package cats.scalatest
 
-import org.scalatest.exceptions.{ TestFailedException, StackDepthException }
+import org.scalatest.exceptions.{StackDepthException, TestFailedException}
 
 import cats.data.Validated
-import Validated.{ Valid, Invalid }
+import Validated.{Invalid, Valid}
 import org.scalactic.source
 
 trait ValidatedValues {
@@ -14,7 +14,9 @@ trait ValidatedValues {
    *
    * @param validated the `cats.data.Validated` on which to add the `value` method
    */
-  implicit def convertValidatedToValidatable[E, T](validated: Validated[E, T])(implicit pos: source.Position): Validatable[E, T] =
+  implicit def convertValidatedToValidatable[E, T](
+    validated: Validated[E, T]
+  )(implicit pos: source.Position): Validatable[E, T] =
     new Validatable(validated, pos)
 
   /**
@@ -41,7 +43,11 @@ trait ValidatedValues {
     def value: T = validated match {
       case Valid(valid) => valid
       case Invalid(left) =>
-        throw new TestFailedException((_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."), None, pos)
+        throw new TestFailedException(
+          (_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."),
+          None,
+          pos
+        )
     }
 
     /**
@@ -49,7 +55,11 @@ trait ValidatedValues {
      */
     def invalidValue: E = validated match {
       case Valid(valid) =>
-        throw new TestFailedException((_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."), None, pos)
+        throw new TestFailedException(
+          (_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."),
+          None,
+          pos
+        )
       case Invalid(left) => left
     }
 
@@ -60,7 +70,11 @@ trait ValidatedValues {
     def valid: Valid[T] = validated match {
       case valid: Valid[T] => valid
       case _ =>
-        throw new TestFailedException((_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."), None, pos)
+        throw new TestFailedException(
+          (_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."),
+          None,
+          pos
+        )
     }
 
     /**
@@ -70,7 +84,11 @@ trait ValidatedValues {
     def invalid: Invalid[E] = validated match {
       case invalid: Invalid[E] => invalid
       case _ =>
-        throw new TestFailedException((_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."), None, pos)
+        throw new TestFailedException(
+          (_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."),
+          None,
+          pos
+        )
     }
   }
 }

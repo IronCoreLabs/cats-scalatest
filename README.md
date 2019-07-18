@@ -9,11 +9,11 @@ Scalatest bindings for cats.  Inspired by scalaz-scalatest.
 
 Apache 2.0 licensed.
 
-**cats-scalatest** is a [Typelevel](http://typelevel.org/) project. This means we embrace pure, typeful, functional programming, and provide a safe and friendly environment for teaching, learning, and contributing as described in the Typelevel [Code of Conduct](http://typelevel.org/conduct.html).
+**cats-scalatest** is a [Typelevel](http://typelevel.org/) project. This means we embrace pure, typeful, functional programming, and provide a safe and friendly environment for teaching, learning, and contributing as described in the [Scala Code of Conduct](http://typelevel.org/code-of-conduct.html).
 
 ## Setup
 
-We currently crossbuild for Scala 2.10, 2.11 and 2.12.
+We currently crossbuild for Scala 2.11 and 2.12.
 
 Because cats is such a young project the versioning is not quite following the semantic versioning guidelines (yet). Use the below table to understand
 which version of the cats-scalatest library you need.
@@ -32,6 +32,7 @@ which version of the cats-scalatest library you need.
 | 2.2.0                 | 0.9.0         | 3.0.0             |
 | 2.3.0                 | 1.0.0-MF      | 3.0.0             |
 | 2.3.1                 | 1.0.1         | 3.0.0             |
+| 2.4.0                 | 1.5.0         | 3.0.5             |
 
 To include this in your project, add the dependency:
 

@@ -1,8 +1,8 @@
 package cats.scalatest
 
-import org.scalatest.matchers.{ BeMatcher, MatchResult, Matcher }
+import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
 
-import cats.data.{ Validated, ValidatedNel, NonEmptyList }
+import cats.data.{NonEmptyList, Validated, ValidatedNel}
 
 trait ValidatedMatchers {
 
@@ -54,48 +54,46 @@ final object ValidatedMatchers extends ValidatedMatchers
 
 //Classes used above
 final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Matcher[ValidatedNel[E, _]] {
-  def apply(validated: ValidatedNel[E, _]): MatchResult = {
+  def apply(validated: ValidatedNel[E, _]): MatchResult =
     MatchResult(
       validated.fold(n => (n.head :: n.tail).contains(element), _ => false),
       s"'$validated' did not contain an Invalid element matching '$element'.",
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
-  }
 }
 
 final private[scalatest] class BeCatsInvalidMatcher[E](element: E) extends Matcher[Validated[E, _]] {
-  def apply(validated: Validated[E, _]): MatchResult = {
+  def apply(validated: Validated[E, _]): MatchResult =
     MatchResult(
       validated.fold(_ == element, _ => false),
       s"'$validated' did not contain an Invalid element matching '$element'.",
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
-  }
 }
 
 final private[scalatest] class BeValidMatcher[T](element: T) extends Matcher[Validated[_, T]] {
-  def apply(validated: Validated[_, T]): MatchResult = {
+  def apply(validated: Validated[_, T]): MatchResult =
     MatchResult(
       validated.fold(_ => false, _ == element),
       s"'$validated' did not contain a Valid element matching '$element'.",
       s"'$validated' contained a Valid element matching '$element', but should not have."
     )
-  }
 }
 
 final private[scalatest] class IsCatsValidMatcher[T] extends BeMatcher[Validated[_, T]] {
-  def apply(validated: Validated[_, T]): MatchResult = MatchResult(
-    validated.isValid,
-    s"'$validated' was not Valid, but should have been.",
-    s"'$validated' was Valid, but should not have been."
-  )
+  def apply(validated: Validated[_, T]): MatchResult =
+    MatchResult(
+      validated.isValid,
+      s"'$validated' was not Valid, but should have been.",
+      s"'$validated' was Valid, but should not have been."
+    )
 }
 
 final private[scalatest] class IsCatsInvalidMatcher[E] extends BeMatcher[Validated[E, _]] {
-  def apply(validated: Validated[E, _]): MatchResult = MatchResult(
-    validated.isInvalid,
-    s"'$validated' was not an Invalid, but should have been.",
-    s"'$validated' was an Invalid, but should not have been."
-  )
+  def apply(validated: Validated[E, _]): MatchResult =
+    MatchResult(
+      validated.isInvalid,
+      s"'$validated' was not an Invalid, but should have been.",
+      s"'$validated' was an Invalid, but should not have been."
+    )
 }
-

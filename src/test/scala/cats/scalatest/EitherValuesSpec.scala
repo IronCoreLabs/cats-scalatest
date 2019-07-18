@@ -1,7 +1,7 @@
 package cats.scalatest
 
 import org.scalatest.exceptions.TestFailedException
-import scala.util.{ Either, Right, Left }
+import scala.util.{Either, Left, Right}
 
 class EitherValuesSpec extends TestBase {
   import EitherValues._
@@ -18,7 +18,9 @@ class EitherValuesSpec extends TestBase {
         intercept[TestFailedException] {
           r.value should ===(thisRecord)
         }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("EitherValuesSpec.scala")
     }
   }
@@ -34,9 +36,10 @@ class EitherValuesSpec extends TestBase {
       val caught = intercept[TestFailedException] {
         r.leftValue
       }
-      caught.failedCodeLineNumber.value should equal(thisLineNumber - 2)
+      if (isJVM) {
+        caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
+      }
       caught.failedCodeFileName.value should be("EitherValuesSpec.scala")
     }
   }
 }
-
