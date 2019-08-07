@@ -3,8 +3,8 @@ scala:
 - 2.11.12
 matrix:
   include:
-  - scala: 2.12.7
-    jdk: oraclejdk8
+  - scala: 2.12.8
+    jdk: openjdk11
 cache:
   directories:
   - "$HOME/.ivy2/cache"
