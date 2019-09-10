@@ -1,6 +1,6 @@
 import sbtcrossproject.CrossPlugin.autoImport.{CrossType, crossProject}
 import ReleaseTransformations._
-lazy val catsVersion = "1.6.1"
+lazy val catsVersion = "2.0.0"
 
 // Due to the cross project being in(file(".")), we need to prevent
 // the automatic root project from compiling.
