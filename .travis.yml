@@ -1,23 +1,23 @@
 language: scala
 scala:
-- 2.11.12
+  - 2.11.12
 matrix:
   include:
-  - scala: 2.12.8
-    jdk: openjdk11
+    - scala: 2.12.9
+      jdk: openjdk11
 cache:
   directories:
-  - "$HOME/.ivy2/cache"
-  - "$HOME/.sbt/boot/"
+    - "$HOME/.ivy2/cache"
+    - "$HOME/.sbt/boot/"
 
 install:
   - pip install --user codecov
 
 script:
-- sbt ++$TRAVIS_SCALA_VERSION scalafmtCheckAll scalastyle compile
-- sbt ++$TRAVIS_SCALA_VERSION coverage test coverageReport
+  - sbt ++$TRAVIS_SCALA_VERSION scalafmtCheckAll scalastyle compile
+  - sbt ++$TRAVIS_SCALA_VERSION coverage test coverageReport
 after_success:
-- codecov
+  - codecov
 notifications:
   slack:
     secure: Nn7l55GE56n+wrOGmpFxrZb6KMhT/rQd/LGDZzqfkphGLaAOFFycfLVOSJ3cftFpBPYi2nOLDJbWXAe5MNJopJlr75iujqi+MLrqdGH8uynXsREJJVxOTm2dQAw094aOLfylxN0jWLrxckQ1Ps5ESRuHAMnm/36/zhS78z+xC4jzi06vbI7+kWo/DnRvHCq5Nz5F/f1cHJfqebQbaFNiLCg9f+rlmREfJG/54dT+tdMO8NAbTJR4GHl5IX0UNUkhz30Obtxax+Lt1zQe0TigCbO4KdoownuO5aHAkoLtbOpiTlwXkMARJJC9/TBORWM5dLISvXwlKwd1KOS2JI5NJWATsbBnzEqS/DfV0sp6wWucO3TpgPVqdIpgOOnKEszpr45Facyg3/Zjjs0K/Bo35BTdWrhKBTOBrbrcuCs88i9sy/H4G565enfVS9JbWhFxMi5dZFii3QQyBUwKCjQn0ytC699pxLQ8fs1NsqhBIZDgsiXIV6e6fdpUUY9nvmgjhttPi6JImBbbht/6BSn2UQm8Z3uvEpjYdurKwkK4b404jXzDhcqCyZH21vGGaTV3TKYdR/F9rSnCFXlOCEoFmO7qOsePcSIhZ5VHOi2M+Rmxr/5V88eCtte0Ck/JpkcwpAv86S7DPQFOADdJaFfIBO9ZuhoQEEkMGiecv/ALBYI=

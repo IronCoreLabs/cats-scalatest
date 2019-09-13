@@ -1,6 +1,6 @@
 import sbtcrossproject.CrossPlugin.autoImport.{CrossType, crossProject}
 import ReleaseTransformations._
-lazy val catsVersion = "1.6.1"
+lazy val catsVersion = "2.0.0"
 
 // Due to the cross project being in(file(".")), we need to prevent
 // the automatic root project from compiling.
@@ -15,8 +15,8 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "cats-scalatest",
     organization := "com.ironcorelabs",
-    scalaVersion := "2.12.8",
-    crossScalaVersions := Seq("2.11.12", "2.12.8"),
+    scalaVersion := "2.13.0",
+    crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0"),
     scalacOptions ++= Seq(
       "-deprecation",
       "-unchecked"
