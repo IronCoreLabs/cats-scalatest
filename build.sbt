@@ -15,8 +15,8 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "cats-scalatest",
     organization := "com.ironcorelabs",
-    scalaVersion := "2.13.0",
-    crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0"),
+    scalaVersion := "2.13.1",
+    crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1"),
     scalacOptions ++= Seq(
       "-deprecation",
       "-unchecked"
