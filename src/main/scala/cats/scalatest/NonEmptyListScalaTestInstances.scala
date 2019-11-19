@@ -5,7 +5,6 @@ import org.scalatest.enablers.Collecting
 import cats.data.NonEmptyList
 
 trait NonEmptyListScalaTestInstances {
-
   /**
    * Support for using .loneElement on NonEmptyList
    * http://www.scalatest.org/user_guide/using_matchers#singleElementCollections
@@ -16,7 +15,6 @@ trait NonEmptyListScalaTestInstances {
     override def sizeOf(collection: NonEmptyList[A]): Int = collection.length
     override def genTraversableFrom(collection: NonEmptyList[A]): GenTraversable[A] = collection.toList
   }
-
 }
 
 /**
