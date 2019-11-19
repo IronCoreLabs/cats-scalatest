@@ -36,7 +36,6 @@ trait EitherValues {
    * @see org.scalatest.OptionValues.Valuable
    */
   final class Eitherable[E, T](either: E Either T, pos: source.Position) {
-
     /**
      * Extract the `Right` from the Either. If the value is not a right the test will fail.
      */

@@ -4,7 +4,6 @@ import cats.data.{NonEmptyList, ValidatedNel}
 import cats.data.Validated.{Invalid, Valid}
 
 class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
-
   "ValidatedMatchers" should {
     val simpleFailureNel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList.of(thisRecord, thisTobacconist))
 

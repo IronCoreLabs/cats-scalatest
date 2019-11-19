@@ -6,7 +6,6 @@ import scala.util.Either
 import cats.syntax.either._
 
 trait EitherMatchers {
-
   /**
    * Checks to see if `scala.util.Either` is a specific Left element.
    */
