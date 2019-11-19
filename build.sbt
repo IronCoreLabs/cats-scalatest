@@ -39,7 +39,6 @@ lazy val publishSettings = Seq(
   pomIncludeRepository := { _ =>
     false
   },
-  useGpg := true,
   usePgpKeyHex("E84BBF42"),
   pomExtra := (
     <scm>
