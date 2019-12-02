@@ -1,8 +1,10 @@
 package cats.scalatest
 
-import org.scalatest.{Matchers, OptionValues, WordSpec}
+import org.scalatest.OptionValues
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-abstract class TestBase extends WordSpec with Matchers with OptionValues {
+abstract class TestBase extends AnyWordSpec with Matchers with OptionValues {
   val thisRecord = "I will not buy this record, it is scratched."
   val thisTobacconist = "Ah! I will not buy this tobacconist's, it is scratched."
   val hovercraft = "Yes, cigarettes. My hovercraft is full of eels."
