@@ -16,7 +16,7 @@ inThisBuild(
   )
 )
 
-lazy val catsScalatest = crossProject(JVMPlatform, JSPlatform)
+lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Full)
   .in(file("."))
   .settings(
