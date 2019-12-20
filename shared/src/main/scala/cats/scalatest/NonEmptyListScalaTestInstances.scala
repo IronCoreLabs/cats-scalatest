@@ -5,6 +5,7 @@ import org.scalatest.enablers.Collecting
 import cats.data.NonEmptyList
 
 trait NonEmptyListScalaTestInstances {
+
   /**
    * Support for using .loneElement on NonEmptyList
    * http://www.scalatest.org/user_guide/using_matchers#singleElementCollections

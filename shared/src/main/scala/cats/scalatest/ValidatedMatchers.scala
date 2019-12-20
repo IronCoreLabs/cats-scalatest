@@ -5,6 +5,7 @@ import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
 import cats.data.{NonEmptyList, Validated, ValidatedNel}
 
 trait ValidatedMatchers {
+
   /**
    * Checks if a `cats.data.ValidatedNel` contains a specific failure element
    * Usage:
