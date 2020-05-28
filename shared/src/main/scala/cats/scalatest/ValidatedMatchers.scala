@@ -1,8 +1,9 @@
 package cats.scalatest
 
+import cats.data.{Validated, ValidatedNel}
 import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
 
-import cats.data.{NonEmptyList, Validated, ValidatedNel}
+import scala.reflect.{ClassTag, classTag}
 
 trait ValidatedMatchers {
 
@@ -20,6 +21,8 @@ trait ValidatedMatchers {
    *
    */
   def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
+
+  def haveAnInvalid[T: ClassTag]: Matcher[ValidatedNel[_ >: T, _]] = new HasACatsValidatedFailure[T](classTag[T])
 
   /**
    * Checks if a `cats.data.Validated` is a specific `Invalid` element.
@@ -59,6 +62,25 @@ final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Ma
       validated.fold(n => (n.head :: n.tail).contains(element), _ => false),
       s"'$validated' did not contain an Invalid element matching '$element'.",
       s"'$validated' contained an Invalid element matching '$element', but should not have."
+    )
+}
+
+final private[scalatest] class HasACatsValidatedFailure[T: ClassTag](
+  val clazzTag: ClassTag[T]
+) extends Matcher[ValidatedNel[_, _]] {
+  def apply(validated: ValidatedNel[_, _]): MatchResult =
+    MatchResult(
+      validated.fold(
+        n =>
+          (n.head :: n.tail).exists(e =>
+            e.getClass ==
+              clazzTag.runtimeClass.asInstanceOf[Class[T]]
+          ),
+        _ => false
+      ),
+      s"'$validated' did not contain an Invalid element matching '$classTag'.",
+      s"'$validated' contained an Invalid element matching '$clazzTag', but " +
+        s"should not have."
     )
 }
 

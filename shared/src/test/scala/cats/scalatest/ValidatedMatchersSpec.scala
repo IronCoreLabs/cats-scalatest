@@ -1,7 +1,7 @@
 package cats.scalatest
 
-import cats.data.{NonEmptyList, ValidatedNel}
 import cats.data.Validated.{Invalid, Valid}
+import cats.data.{NonEmptyList, ValidatedNel}
 
 class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
   "ValidatedMatchers" should {
@@ -37,6 +37,15 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
 
     "Match a specific element of a single Valid" in {
       Valid(hovercraft) should beValid(hovercraft)
+    }
+
+    "Match one specific type in an Invalid NEL" in {
+      simpleFailureNel should haveAnInvalid[String]
+      val nel: ValidatedNel[RuntimeException, Nothing] = Invalid(NonEmptyList.of(new RuntimeException("test")))
+      nel should haveAnInvalid[RuntimeException]
+
+      val nel2: ValidatedNel[Nothing, RuntimeException] = Valid(new RuntimeException("test"))
+      nel2 shouldNot haveAnInvalid[RuntimeException]
     }
   }
 }
