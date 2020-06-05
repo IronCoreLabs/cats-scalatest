@@ -41,11 +41,15 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
 
     "Match one specific type in an Invalid NEL" in {
       simpleFailureNel should haveAnInvalid[String]
-      val nel: ValidatedNel[RuntimeException, Nothing] = Invalid(NonEmptyList.of(new RuntimeException("test")))
-      nel should haveAnInvalid[RuntimeException]
 
-      val nel2: ValidatedNel[Nothing, RuntimeException] = Valid(new RuntimeException("test"))
-      nel2 shouldNot haveAnInvalid[RuntimeException]
+      val nel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList.of("test"))
+      nel should haveAnInvalid[String]
+      nel should haveAnInvalid[Any]
+      nel shouldNot haveAnInvalid[Int]
+
+      val nel2: ValidatedNel[Nothing, Unit] = Valid(())
+      nel2 shouldNot haveAnInvalid[String]
+      nel2 shouldNot haveAnInvalid[Unit]
     }
   }
 }

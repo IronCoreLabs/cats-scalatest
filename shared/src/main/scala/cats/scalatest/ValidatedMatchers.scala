@@ -1,9 +1,9 @@
 package cats.scalatest
 
-import cats.data.{Validated, ValidatedNel}
+import cats.data.{Validated, ValidatedNel, NonEmptyList => NEL}
 import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
-
-import scala.reflect.{ClassTag, classTag}
+import shapeless._
+import shapeless.syntax.typeable._
 
 trait ValidatedMatchers {
 
@@ -22,7 +22,21 @@ trait ValidatedMatchers {
    */
   def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
 
-  def haveAnInvalid[T: ClassTag]: Matcher[ValidatedNel[_ >: T, _]] = new HasACatsValidatedFailure[T](classTag[T])
+  /**
+   * Checks if a `cats.data.ValidatedNel` contains a failure element matching
+   * a specific type
+   * Usage:
+   * {{{
+   *   validationObj should haveAnInvalid[someErrorType]
+   * }}}
+   * Can also be used to test multiple elements: `
+   * {{{
+   *  validationObj should (haveAnInvalid[someErrorType] and
+   *                       haveAnInvalid[someOtherErrorType])
+   * }}}
+   *
+   */
+  def haveAnInvalid[E: Typeable]: Matcher[ValidatedNel[_, _]] = new HasACatsValidatedFailure[E]
 
   /**
    * Checks if a `cats.data.Validated` is a specific `Invalid` element.
@@ -65,23 +79,23 @@ final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Ma
     )
 }
 
-final private[scalatest] class HasACatsValidatedFailure[T: ClassTag](
-  val clazzTag: ClassTag[T]
-) extends Matcher[ValidatedNel[_, _]] {
-  def apply(validated: ValidatedNel[_, _]): MatchResult =
+final private[scalatest] class HasACatsValidatedFailure[T: Typeable] extends Matcher[ValidatedNel[_, _]] {
+  def apply(validated: ValidatedNel[_, _]): MatchResult = {
+    val expected: String = Typeable[T].describe
+
     MatchResult(
       validated.fold(
-        n =>
-          (n.head :: n.tail).exists(e =>
-            e.getClass ==
-              clazzTag.runtimeClass.asInstanceOf[Class[T]]
-          ),
+        (n: NEL[_]) =>
+          (n.head :: n.tail).exists { e =>
+            e.cast[T].isDefined
+          },
         _ => false
       ),
-      s"'$validated' did not contain an Invalid element matching '$classTag'.",
-      s"'$validated' contained an Invalid element matching '$clazzTag', but " +
+      s"'$validated' did not contain an Invalid element matching '$expected'.",
+      s"'$validated' contained an Invalid element matching '$expected' but " +
         s"should not have."
     )
+  }
 }
 
 final private[scalatest] class BeCatsInvalidMatcher[E](element: E) extends Matcher[Validated[E, _]] {
