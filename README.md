@@ -135,10 +135,11 @@ def valid[T]
 def beValid[T](element: T)
 ```
 
-I won't repeat how they're used here. `Validated` does have an additional matcher though which allows
-you to describe values that are in the `Invalid` if you're using `ValidatedNel`.
+I won't repeat how they're used here. `Validated` does have some additional
+matchers though which allows you to describe values that are in the `Invalid` if
+you're using `ValidatedNel`.
 
-This matcher is `haveInvalid` and can be used like this:
+The first matcher is `haveInvalid` and can be used like this:
 
 ```
 val validatedNelValue: ValidatedNel[String, Int] = Invalid(NonEmptyList("error1", "error2"))
@@ -148,6 +149,19 @@ validatedNelValue should haveInvalid("error1")
 
 //But you can also combine them with the and word to match multiple values:
 validateNelValue should (haveInvalid("error1") and haveInvalid("error2"))
+```
+
+The second matcher is `haveAnInvalid` and can be used like this:
+
+```
+val validatedNelValue: ValidatedNel[Exception, Int] = Invalid(NonEmptyList(new ArrayIndexOutOfBoundsException, new NoSuchElementException))
+
+//The following works fine:
+validatedNelValue should haveAnInvalid[NoSuchElementException]
+validatedNelValue shouldNot haveAnInvalid[NumberFormatException]
+
+//But you can also combine them with the and word to match multiple values:
+validateNelValue should (haveAnInvalid[ArrayIndexOutOfBoundsException] and haveAnInvalid[NoSuchElementException])
 ```
 
 ## Values Helpers
