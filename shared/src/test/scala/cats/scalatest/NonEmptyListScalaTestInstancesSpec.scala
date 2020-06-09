@@ -21,9 +21,8 @@ class NonEmptyListScalaTestInstancesSpec extends TestBase {
         intercept[TestFailedException] {
           nel.loneElement should ===(thisRecord)
         }
-      if (isJVM) {
+      if (isJVM)
         caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
-      }
       caught.failedCodeFileName.value should be("NonEmptyListScalaTestInstancesSpec.scala")
     }
   }
@@ -31,7 +30,7 @@ class NonEmptyListScalaTestInstancesSpec extends TestBase {
   "inspectors" should {
     "state something about all elements" in {
       val nel: NonEmptyList[Int] = NonEmptyList.of(1, 2, 3, 4, 5)
-      forAll(nel) { _ should be > 0 }
+      forAll(nel)(_ should be > 0)
     }
   }
 
