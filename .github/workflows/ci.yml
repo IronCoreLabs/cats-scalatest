@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: olafurpg/setup-scala@v7
+        with:
+          java-version: 11
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.sbt
+          key: sbt-${{ hashFiles('**/build.sbt') }}
+      - name: Run tests
+        run: csbt +compile +test scalafmtCheckAll scalastyle

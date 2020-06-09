@@ -18,9 +18,8 @@ class EitherValuesSpec extends TestBase {
         intercept[TestFailedException] {
           r.value should ===(thisRecord)
         }
-      if (isJVM) {
+      if (isJVM)
         caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
-      }
       caught.failedCodeFileName.value should be("EitherValuesSpec.scala")
     }
   }
@@ -36,9 +35,8 @@ class EitherValuesSpec extends TestBase {
       val caught = intercept[TestFailedException] {
         r.leftValue
       }
-      if (isJVM) {
+      if (isJVM)
         caught.failedCodeLineNumber.value should equal(thisLineNumber - 3)
-      }
       caught.failedCodeFileName.value should be("EitherValuesSpec.scala")
     }
   }

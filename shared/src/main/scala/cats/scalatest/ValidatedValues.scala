@@ -40,56 +40,60 @@ trait ValidatedValues {
    * @see org.scalatest.OptionValues.Valuable
    */
   final class Validatable[E, T](validated: Validated[E, T], pos: source.Position) {
-    def value: T = validated match {
-      case Valid(valid) => valid
-      case Invalid(left) =>
-        throw new TestFailedException(
-          (_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."),
-          None,
-          pos
-        )
-    }
+    def value: T =
+      validated match {
+        case Valid(valid) => valid
+        case Invalid(left) =>
+          throw new TestFailedException(
+            (_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."),
+            None,
+            pos
+          )
+      }
 
     /**
      * Allow .invalidValue on an validated to extract the invalid side. Like .value, but for the `Invalid`.
      */
-    def invalidValue: E = validated match {
-      case Valid(valid) =>
-        throw new TestFailedException(
-          (_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."),
-          None,
-          pos
-        )
-      case Invalid(left) => left
-    }
+    def invalidValue: E =
+      validated match {
+        case Valid(valid) =>
+          throw new TestFailedException(
+            (_: StackDepthException) => Some(s"'$valid' is Valid, expected Invalid."),
+            None,
+            pos
+          )
+        case Invalid(left) => left
+      }
 
     /**
      * Returns the <code>Validated</code> passed to the constructor as a <code>Valid</code>, if it is a <code>Valid</code>,
      * else throws <code>TestFailedException</code> with a detail message indicating the <code>Validated</code> was not a <code>Valid</code>.
      */
-    def valid: Valid[T] = validated match {
-      case valid: Valid[T] => valid
-      case _ =>
-        throw new TestFailedException(
-          (_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."),
-          None,
-          pos
-        )
-    }
+    def valid: Valid[T] =
+      validated match {
+        case valid: Valid[T] => valid
+        case _ =>
+          throw new TestFailedException(
+            (_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."),
+            None,
+            pos
+          )
+      }
 
     /**
      * Returns the <code>Validated</code> passed to the constructor as an <code>Invalid</code>, if it is an <code>Invalid</code>,
      * else throws <code>TestFailedException</code> with a detail message indicating the <code>Validated</code> was not an <code>Invalid</code>.
      */
-    def invalid: Invalid[E] = validated match {
-      case invalid: Invalid[E] => invalid
-      case _ =>
-        throw new TestFailedException(
-          (_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."),
-          None,
-          pos
-        )
-    }
+    def invalid: Invalid[E] =
+      validated match {
+        case invalid: Invalid[E] => invalid
+        case _ =>
+          throw new TestFailedException(
+            (_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."),
+            None,
+            pos
+          )
+      }
   }
 }
 
