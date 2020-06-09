@@ -14,18 +14,13 @@ jobs:
       - name: Set up JDK 11
         uses: olafurpg/setup-scala@v7
         with:
-          java-version: 11
-      - name: Run tests
-        run: csbt +compile +test scalafmtCheckAll scalastyle
-        - name: Cache
+          java-version: 1
+      - name: Cache
         uses: actions/cache@v2
         with:
           path: |
             ~/.cache/coursier
             ~/.sbt
           key: sbt-${{ hashFiles('**/build.sbt') }}
-      - name: Cache SBT
-        uses: actions/cache@v1
-        with:
-          path: ~/.sbt
-          key: sbt-${{ hashFiles('**/build.sbt') }}
+      - name: Run tests
+        run: csbt +compile +test scalafmtCheckAll scalastyle
