@@ -98,7 +98,6 @@ trait ValidatedValues {
 }
 
 /**
- *
  * Companion object for easy importing – rather than mixing in – to allow `ValidatedValues` operations.
  *
  * This will permit you to invoke a `value` method on an instance of a `cats.data.Validated`,
