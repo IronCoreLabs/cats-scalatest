@@ -18,7 +18,6 @@ trait ValidatedMatchers {
    *  validationObj should (haveInvalid (someErrorMessageOrObject) and
    *                       haveInvalid (someOtherErrorMessageOrObject))
    * }}}
-   *
    */
   def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
 
@@ -34,7 +33,6 @@ trait ValidatedMatchers {
    *  validationObj should (haveAnInvalid[someErrorType] and
    *                       haveAnInvalid[someOtherErrorType])
    * }}}
-   *
    */
   def haveAnInvalid[E: Typeable]: Matcher[ValidatedNel[_, _]] = new HasACatsValidatedFailure[E]
 
@@ -50,7 +48,6 @@ trait ValidatedMatchers {
 
   /**
    * Checks if a `cats.data.Validated` is a `Valid`.
-   *
    */
   def valid[T]: BeMatcher[Validated[_, T]] = new IsCatsValidMatcher[T]
 
