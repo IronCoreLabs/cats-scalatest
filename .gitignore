@@ -47,3 +47,4 @@ couchbase-dev.cfg
 src/jekyll/_tutorials
 **/.bloop
 .metals
+project/metals.sbt
