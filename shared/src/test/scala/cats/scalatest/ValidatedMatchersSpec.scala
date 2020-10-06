@@ -24,7 +24,7 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
     }
 
     "By negating 'invalid', test whether a Validated instance is a Valid" in {
-      Valid(hovercraft) should not be (invalid)
+      Valid(hovercraft) should not be invalid
     }
 
     "Test whether a Validated instance is a Valid" in {
@@ -32,7 +32,7 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
     }
 
     "By negating 'valid', test whether a Validated instance is an invalid" in {
-      Invalid(thisTobacconist) should not be (valid)
+      Invalid(thisTobacconist) should not be valid
     }
 
     "Match a specific element of a single Valid" in {
