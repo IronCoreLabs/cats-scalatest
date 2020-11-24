@@ -35,6 +35,7 @@ which version of the cats-scalatest library you need.
 | 3.0.0                  | 2.0.0        | 3.0.8             |
 | 3.0.4                  | 2.0.0        | 3.1.0             |
 | 3.0.5                  | 2.1.0        | 3.1.0             |
+| 3.1.0                  | 2.1.1        | 3.2.3             |
 
 To include this in your project, add the dependency:
 
