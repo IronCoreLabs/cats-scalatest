@@ -14,6 +14,7 @@ inThisBuild(
     crossScalaVersions := Seq(scalaVersion.value, "2.13.1")
   )
 )
+skip in publish := true
 
 lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Full)
