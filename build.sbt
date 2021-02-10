@@ -1,5 +1,5 @@
 import sbtcrossproject.CrossPlugin.autoImport.{CrossType, crossProject}
-lazy val catsVersion = "2.3.1"
+lazy val catsVersion = "2.4.1"
 inThisBuild(
   Seq(
     name := "cats-scalatest",
