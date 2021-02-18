@@ -26,7 +26,7 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
     ),
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core"   % catsVersion,
-      "org.scalatest" %%% "scalatest"   % "3.2.3",
+      "org.scalatest" %%% "scalatest"   % "3.2.4",
       "com.chuusai"   %%% "shapeless"   % "2.3.3"
     )
   )
