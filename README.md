@@ -1,7 +1,7 @@
 # cats-scalatest
 
-[![Build Status](https://travis-ci.org/IronCoreLabs/cats-scalatest.svg?branch=master)](https://travis-ci.org/IronCoreLabs/cats-scalatest)
-[![codecov.io](https://codecov.io/github/IronCoreLabs/cats-scalatest/coverage.svg?branch=master)](https://codecov.io/github/IronCoreLabs/cats-scalatest?branch=master)
+[![CI](https://github.com/IronCoreLabs/cats-scalatest/actions/workflows/ci.yml/badge.svg)](https://github.com/IronCoreLabs/cats-scalatest/actions/workflows/ci.yml)
+[![codecov.io](https://codecov.io/github/IronCoreLabs/cats-scalatest/coverage.svg?branch=main)](https://codecov.io/github/IronCoreLabs/cats-scalatest?branch=main)
 [![scaladoc](https://javadoc-badge.appspot.com/com.ironcorelabs/cats-scalatest_2.11.svg?label=scaladoc)](https://javadoc-badge.appspot.com/com.ironcorelabs/cats-scalatest_2.11)
 
 Scalatest bindings for cats. Inspired by scalaz-scalatest.
@@ -187,7 +187,7 @@ The same is true for the `Validated`. If you import or mixin `ValidatedValues` y
 ## Documentation and Support
 
 - See the [scaladoc](https://javadoc-badge.appspot.com/com.ironcorelabs/cats-scalatest_2.11).
-- The [tests](https://github.com/IronCoreLabs/cats-scalatest/tree/master/src/test/scala/cats/scalatest) show usage.
+- The [tests](https://github.com/IronCoreLabs/cats-scalatest/tree/main/src/test/scala/cats/scalatest) show usage.
 - Yell at [@IronCoreLabs](https://twitter.com/ironcorelabs) or [@coltfred](https://twitter.com/coltfred) on twitter.
 - Drop by the cats [gitter](https://gitter.im/non/cats).
 
