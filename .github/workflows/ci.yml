@@ -23,4 +23,4 @@ jobs:
             ~/.sbt
           key: sbt-${{ hashFiles('**/build.sbt') }}
       - name: Run tests
-        run: csbt +compile +test scalafmtCheckAll scalastyle
+        run: sbt +compile +test scalafmtCheckAll scalastyle
