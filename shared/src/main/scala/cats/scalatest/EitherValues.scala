@@ -11,29 +11,29 @@ trait EitherValues {
   /**
    * Implicit conversion that adds a `value` method to `scala.util.Either`
    *
-   * @param either the `scala.util.Either` on which to add the `value` method
+   * @param either
+   *   the `scala.util.Either` on which to add the `value` method
    */
   implicit def convertEitherToEitherable[E, T](either: E Either T)(implicit pos: source.Position): Eitherable[E, T] =
     new Eitherable(either, pos)
 
   /**
-   * Container class for matching success
-   * type stuff in `scala.util.Either` containers,
-   * similar to `org.scalatest.OptionValues.Valuable`
+   * Container class for matching success type stuff in `scala.util.Either` containers, similar to
+   * `org.scalatest.OptionValues.Valuable`
    *
    * Meant to allow you to make statements like:
    *
-   * <pre class="stREPL">
-   *   result.value should be &gt; 15
-   * </pre>
+   * <pre class="stREPL"> result.value should be &gt; 15 </pre>
    *
    * Where it only matches if result is `Valid` and is also greater than 15.
    *
    * Otherwise your test will fail, indicating that it was left instead of right
    *
-   * @param either A `scala.util.Either` object to try converting to a `Eitherable`
+   * @param either
+   *   A `scala.util.Either` object to try converting to a `Eitherable`
    *
-   * @see org.scalatest.OptionValues.Valuable
+   * @see
+   *   org.scalatest.OptionValues.Valuable
    */
   final class Eitherable[E, T](either: E Either T, pos: source.Position) {
 
@@ -52,8 +52,8 @@ trait EitherValues {
       }
 
     /**
-     * Use .leftValue on an Either to extract the left side. Like .value, but for the left.
-     * If the value is a right, the test will fail.
+     * Use .leftValue on an Either to extract the left side. Like .value, but for the left. If the value is a right, the
+     * test will fail.
      */
     def leftValue: E =
       either match {
@@ -71,21 +71,20 @@ trait EitherValues {
 /**
  * Companion object for easy importing – rather than mixing in – to allow `EitherValues` operations.
  *
- * This will permit you to invoke a `value` method on an instance of a `scala.util.Either`,
- * which attempts to unwrap the `Valid`.
+ * This will permit you to invoke a `value` method on an instance of a `scala.util.Either`, which attempts to unwrap the
+ * `Valid`.
  *
  * Similar to `org.scalatest.OptionValues.Valuable`
  *
  * Meant to allow you to make statements like:
  *
- * <pre class="stREPL">
- *   result.value should be &gt; 15
- * </pre>
+ * <pre class="stREPL"> result.value should be &gt; 15 </pre>
  *
  * Where it only matches if result is both an `Either.Vaild` and has a value > 15.
  *
  * Otherwise your test will fail, indicating that it was an Invalid instead of Valid
  *
- * @see EitherValues.EitherValuable
+ * @see
+ *   EitherValues.EitherValuable
  */
 object EitherValues extends EitherValues

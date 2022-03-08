@@ -1,6 +1,6 @@
 package cats.scalatest
 
-import cats.data.{Validated, ValidatedNel, NonEmptyList => NEL}
+import cats.data.{NonEmptyList => NEL, Validated, ValidatedNel}
 import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
 import shapeless._
 import shapeless.syntax.typeable._
@@ -8,8 +8,7 @@ import shapeless.syntax.typeable._
 trait ValidatedMatchers {
 
   /**
-   * Checks if a `cats.data.ValidatedNel` contains a specific failure element
-   * Usage:
+   * Checks if a `cats.data.ValidatedNel` contains a specific failure element Usage:
    * {{{
    *   validationObj should haveInvalid (someErrorMessageOrObject)
    * }}}
@@ -22,9 +21,7 @@ trait ValidatedMatchers {
   def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
 
   /**
-   * Checks if a `cats.data.ValidatedNel` contains a failure element matching
-   * a specific type
-   * Usage:
+   * Checks if a `cats.data.ValidatedNel` contains a failure element matching a specific type Usage:
    * {{{
    *   validationObj should haveAnInvalid[someErrorType]
    * }}}
