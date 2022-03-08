@@ -16,8 +16,8 @@ inThisBuild(
 )
 (publish / skip) := true
 
-lazy val `cats-scalatest` = (file(".") / crossProject(JVMPlatform, JSPlatform)
-  .crossType(CrossType.Full))
+lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
+  .crossType(CrossType.Full).in(file("."))
   .settings(
     scalacOptions ++= Seq(
       "-deprecation",
