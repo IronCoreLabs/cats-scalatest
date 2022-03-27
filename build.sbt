@@ -17,7 +17,8 @@ inThisBuild(
 (publish / skip) := true
 
 lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
-  .crossType(CrossType.Full).in(file("."))
+  .crossType(CrossType.Full)
+  .in(file("."))
   .settings(
     scalacOptions ++= Seq(
       "-deprecation",
@@ -26,6 +27,6 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
       "org.scalatest" %%% "scalatest" % "3.2.11",
-      "com.chuusai"   %%% "shapeless" % "2.3.8"
+      "com.chuusai"   %%% "shapeless" % "2.3.9"
     )
   )
