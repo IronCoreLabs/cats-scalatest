@@ -12,7 +12,7 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
     }
 
     "Match multiple specific elements in an Invalid NEL" in {
-      simpleFailureNel should (haveInvalid(thisRecord).and(haveInvalid(thisTobacconist)))
+      simpleFailureNel should haveInvalid(thisRecord).and(haveInvalid(thisTobacconist))
     }
 
     "Match a specific element of a single Invalid" in {
