@@ -11,7 +11,7 @@ inThisBuild(
     homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
     licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
     scalaVersion := "2.12.16",
-    crossScalaVersions := Seq(scalaVersion.value, "2.13.8")
+    crossScalaVersions := Seq(scalaVersion.value, "2.13.10")
   )
 )
 publish / skip := true
