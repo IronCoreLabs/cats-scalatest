@@ -10,7 +10,7 @@ inThisBuild(
     ),
     homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
     licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
-    scalaVersion := "2.12.16",
+    scalaVersion := "2.12.17",
     crossScalaVersions := Seq(scalaVersion.value, "2.13.8")
   )
 )
@@ -26,7 +26,7 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
     ),
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % catsVersion,
-      "org.scalatest" %%% "scalatest" % "3.2.13",
+      "org.scalatest" %%% "scalatest" % "3.2.14",
       "com.chuusai"   %%% "shapeless" % "2.3.10"
     )
   )
