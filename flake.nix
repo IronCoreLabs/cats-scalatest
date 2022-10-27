@@ -17,12 +17,11 @@
 
         mkShell = jdk: pkgs.devshell.mkShell {
           imports = [ typelevel-nix.typelevelShell ];
-          name = "http4s";
+          name = "cats-scalatest";
           typelevelShell = {
             jdk.package = jdk;
             nodejs.enable = true;
             native.enable = true;
-            native.libraries = [ pkgs.zlib pkgs.s2n-tls pkgs.openssl ];
           };
         };
       in
