@@ -21,7 +21,6 @@
           typelevelShell = {
             jdk.package = jdk;
             nodejs.enable = true;
-            native.enable = true;
           };
         };
       in
