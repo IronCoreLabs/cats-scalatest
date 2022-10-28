@@ -18,7 +18,7 @@ trait ValidatedMatchers {
    *                       haveInvalid (someOtherErrorMessageOrObject))
    * }}}
    */
-  def haveInvalid[E](element: E): Matcher[ValidatedNel[E, _]] = new HasCatsValidatedFailure[E](element)
+  def haveInvalid[E](element: E): Matcher[ValidatedNel[E, ?]] = new HasCatsValidatedFailure[E](element)
 
   /**
    * Checks if a `cats.data.ValidatedNel` contains a failure element matching a specific type Usage:
@@ -31,28 +31,27 @@ trait ValidatedMatchers {
    *                       haveAnInvalid[someOtherErrorType])
    * }}}
    */
-  @annotation.nowarn
-  def haveAnInvalid[E: Typeable]: Matcher[ValidatedNel[_, _]] = new HasACatsValidatedFailure[E]
+  def haveAnInvalid[E: Typeable]: Matcher[ValidatedNel[Any, ?]] = new HasACatsValidatedFailure[E]
 
   /**
    * Checks if a `cats.data.Validated` is a specific `Invalid` element.
    */
-  def beInvalid[E](element: E): Matcher[Validated[E, _]] = new BeCatsInvalidMatcher[E](element)
+  def beInvalid[E](element: E): Matcher[Validated[E, ?]] = new BeCatsInvalidMatcher[E](element)
 
   /**
    * Checks if the `cats.data.Validated` is an `Invalid`.
    */
-  def invalid[E]: BeMatcher[Validated[E, _]] = new IsCatsInvalidMatcher[E]
+  def invalid[E]: BeMatcher[Validated[E, ?]] = new IsCatsInvalidMatcher[E]
 
   /**
    * Checks if a `cats.data.Validated` is a `Valid`.
    */
-  def valid[T]: BeMatcher[Validated[_, T]] = new IsCatsValidMatcher[T]
+  def valid[T]: BeMatcher[Validated[?, T]] = new IsCatsValidMatcher[T]
 
   /**
    * Checks if a `cats.data.Validated` is an instance of `Valid`.
    */
-  def beValid[T](element: T): Matcher[Validated[_, T]] = new BeValidMatcher[T](element)
+  def beValid[T](element: T): Matcher[Validated[?, T]] = new BeValidMatcher[T](element)
 }
 
 /**
@@ -65,17 +64,17 @@ trait ValidatedMatchers {
 object ValidatedMatchers extends ValidatedMatchers
 
 //Classes used above
-final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Matcher[ValidatedNel[E, _]] {
-  def apply(validated: ValidatedNel[E, _]): MatchResult =
+final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Matcher[ValidatedNel[E, ?]] {
+  def apply(validated: ValidatedNel[E, ?]): MatchResult =
     MatchResult(
-      validated.fold(n => (n.head :: n.tail).contains(element), _ => false),
+      validated.fold(n => (n.head :: n.tail).contains(element), ? => false),
       s"'$validated' did not contain an Invalid element matching '$element'.",
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
 }
 @annotation.nowarn
-final private[scalatest] class HasACatsValidatedFailure[T: Typeable] extends Matcher[ValidatedNel[_, _]] {
-  def apply(validated: ValidatedNel[_, _]): MatchResult = {
+final private[scalatest] class HasACatsValidatedFailure[+T: Typeable] extends Matcher[ValidatedNel[Any, ?]] {
+  def apply(validated: ValidatedNel[Any, ?]): MatchResult = {
     val expected: String = Typeable[T].describe
 
     MatchResult(
@@ -93,17 +92,17 @@ final private[scalatest] class HasACatsValidatedFailure[T: Typeable] extends Mat
   }
 }
 
-final private[scalatest] class BeCatsInvalidMatcher[E](element: E) extends Matcher[Validated[E, _]] {
-  def apply(validated: Validated[E, _]): MatchResult =
+final private[scalatest] class BeCatsInvalidMatcher[E](element: E) extends Matcher[Validated[E, ?]] {
+  def apply(validated: Validated[E, ?]): MatchResult =
     MatchResult(
-      validated.fold(_ == element, _ => false),
+      validated.fold(_ == element, ? => false),
       s"'$validated' did not contain an Invalid element matching '$element'.",
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
 }
 
-final private[scalatest] class BeValidMatcher[T](element: T) extends Matcher[Validated[_, T]] {
-  def apply(validated: Validated[_, T]): MatchResult =
+final private[scalatest] class BeValidMatcher[T](element: T) extends Matcher[Validated[?, T]] {
+  def apply(validated: Validated[?, T]): MatchResult =
     MatchResult(
       validated.fold(_ => false, _ == element),
       s"'$validated' did not contain a Valid element matching '$element'.",
@@ -111,8 +110,8 @@ final private[scalatest] class BeValidMatcher[T](element: T) extends Matcher[Val
     )
 }
 
-final private[scalatest] class IsCatsValidMatcher[T] extends BeMatcher[Validated[_, T]] {
-  def apply(validated: Validated[_, T]): MatchResult =
+final private[scalatest] class IsCatsValidMatcher[T] extends BeMatcher[Validated[?, T]] {
+  def apply(validated: Validated[?, T]): MatchResult =
     MatchResult(
       validated.isValid,
       s"'$validated' was not Valid, but should have been.",
@@ -120,8 +119,8 @@ final private[scalatest] class IsCatsValidMatcher[T] extends BeMatcher[Validated
     )
 }
 
-final private[scalatest] class IsCatsInvalidMatcher[E] extends BeMatcher[Validated[E, _]] {
-  def apply(validated: Validated[E, _]): MatchResult =
+final private[scalatest] class IsCatsInvalidMatcher[E] extends BeMatcher[Validated[E, ?]] {
+  def apply(validated: Validated[E, ?]): MatchResult =
     MatchResult(
       validated.isInvalid,
       s"'$validated' was not an Invalid, but should have been.",

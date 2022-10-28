@@ -45,10 +45,10 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
       case object Green extends Color(0x00ff00)
       simpleFailureNel should haveAnInvalid[String]
 
-      val nel: ValidatedNel[Color, Nothing] = Invalid(NonEmptyList.of(Red))
+      val nel: ValidatedNel[Color, _] = Invalid(NonEmptyList.of(Red))
+      nel shouldNot haveAnInvalid[String]
       nel should haveAnInvalid[Red.type]
       nel shouldNot haveAnInvalid[Green.type]
-      nel shouldNot haveAnInvalid[String]
 
       val nel2: ValidatedNel[String, Unit] = Valid(())
       nel2 shouldNot haveAnInvalid[String]
