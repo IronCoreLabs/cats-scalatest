@@ -40,16 +40,18 @@ class ValidatedMatchersSpec extends TestBase with ValidatedMatchers {
     }
 
     "Match one specific type in an Invalid NEL" in {
+      sealed abstract class Color(value: Int)
+      case object Red extends Color(0xff0000)
+      case object Green extends Color(0x00ff00)
       simpleFailureNel should haveAnInvalid[String]
 
-      val nel: ValidatedNel[String, Nothing] = Invalid(NonEmptyList.of("test"))
-      nel should haveAnInvalid[String]
-      nel should haveAnInvalid[Any]
-      nel shouldNot haveAnInvalid[Int]
+      val nel: ValidatedNel[Color, Nothing] = Invalid(NonEmptyList.of(Red))
+      nel should haveAnInvalid[Red.type]
+      nel shouldNot haveAnInvalid[Green.type]
+      nel shouldNot haveAnInvalid[String]
 
-      val nel2: ValidatedNel[Nothing, Unit] = Valid(())
+      val nel2: ValidatedNel[String, Unit] = Valid(())
       nel2 shouldNot haveAnInvalid[String]
-      nel2 shouldNot haveAnInvalid[Unit]
     }
   }
 }

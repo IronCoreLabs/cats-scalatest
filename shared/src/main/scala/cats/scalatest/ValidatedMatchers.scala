@@ -2,8 +2,8 @@ package cats.scalatest
 
 import cats.data.{NonEmptyList => NEL, Validated, ValidatedNel}
 import org.scalatest.matchers.{BeMatcher, MatchResult, Matcher}
-import shapeless._
-import shapeless.syntax.typeable._
+import shapeless3.typeable.Typeable
+import shapeless3.typeable.syntax.typeable.cast
 
 trait ValidatedMatchers {
 
@@ -31,6 +31,7 @@ trait ValidatedMatchers {
    *                       haveAnInvalid[someOtherErrorType])
    * }}}
    */
+  @annotation.nowarn
   def haveAnInvalid[E: Typeable]: Matcher[ValidatedNel[_, _]] = new HasACatsValidatedFailure[E]
 
   /**
@@ -61,7 +62,7 @@ trait ValidatedMatchers {
  * result should beValid (100)
  * }}}
  */
-final object ValidatedMatchers extends ValidatedMatchers
+object ValidatedMatchers extends ValidatedMatchers
 
 //Classes used above
 final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Matcher[ValidatedNel[E, _]] {
@@ -72,7 +73,7 @@ final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Ma
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
 }
-
+@annotation.nowarn
 final private[scalatest] class HasACatsValidatedFailure[T: Typeable] extends Matcher[ValidatedNel[_, _]] {
   def apply(validated: ValidatedNel[_, _]): MatchResult = {
     val expected: String = Typeable[T].describe
