@@ -35,7 +35,7 @@ trait EitherMatchers {
  * result should beRight(100)
  * }}}
  */
-final object EitherMatchers extends EitherMatchers
+object EitherMatchers extends EitherMatchers
 
 final private[scalatest] class BeCatsRightEitherMatcher[T](element: T) extends Matcher[_ Either T] {
   def apply(either: _ Either T): MatchResult =

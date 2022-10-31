@@ -10,8 +10,8 @@ abstract class TestBase extends AnyWordSpec with Matchers with OptionValues {
   val hovercraft = "Yes, cigarettes. My hovercraft is full of eels."
 
   // As advised by @sjrd: https://gitter.im/scala-js/scala-js?at=5ce51e9b9d64e537bcef6f08
-  final val isJS = 1.0.toString() == "1"
-  final val isJVM = !isJS
+  final val isJS: Boolean = 1.0.toString() == "1"
+  final val isJVM: Boolean = !isJS
 
   /**
    * Shamelessly swiped from Scalatest.

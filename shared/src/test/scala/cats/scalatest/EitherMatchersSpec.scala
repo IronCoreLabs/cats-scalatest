@@ -3,9 +3,9 @@ package cats.scalatest
 import scala.util.{Left, Right}
 
 class EitherMatchersSpec extends TestBase with EitherMatchers {
-  val goodHovercraft = Right(hovercraft)
-  val badTobacconist = Left(thisTobacconist)
-  val badRecord = Left(thisRecord)
+  val goodHovercraft: Right[Nothing, String] = Right(hovercraft)
+  val badTobacconist: Left[String, Nothing] = Left(thisTobacconist)
+  val badRecord: Left[String, Nothing] = Left(thisRecord)
 
   "EitherMatchers" should {
     "Match 'blind' invalid (i.e. not with specific element)" in {
