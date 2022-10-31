@@ -72,7 +72,7 @@ final private[scalatest] class HasCatsValidatedFailure[E](element: E) extends Ma
       s"'$validated' contained an Invalid element matching '$element', but should not have."
     )
 }
-@annotation.nowarn
+
 final private[scalatest] class HasACatsValidatedFailure[+T: Typeable] extends Matcher[ValidatedNel[Any, ?]] {
   def apply(validated: ValidatedNel[Any, ?]): MatchResult = {
     val expected: String = Typeable[T].describe
