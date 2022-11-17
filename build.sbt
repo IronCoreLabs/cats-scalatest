@@ -2,7 +2,6 @@ import sbtcrossproject.CrossPlugin.autoImport.{CrossType, crossProject}
 lazy val catsVersion = "2.8.0"
 inThisBuild(
   Seq(
-    name := "cats-scalatest",
     organization := "com.ironcorelabs",
     sonatypeProfileName := organization.value,
     developers := List(
