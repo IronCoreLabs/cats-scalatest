@@ -19,3 +19,4 @@ jobs:
         apps: sbt
     - name: Run tests
       run: sbt +compile +test scalafmtCheckAll scalastyle
+

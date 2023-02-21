@@ -1,8 +1,7 @@
 import sbtcrossproject.CrossPlugin.autoImport.{CrossType, crossProject}
-lazy val catsVersion = "2.8.0"
+lazy val catsVersion = "2.9.0"
 inThisBuild(
   Seq(
-    name := "cats-scalatest",
     organization := "com.ironcorelabs",
     sonatypeProfileName := organization.value,
     developers := List(
@@ -10,7 +9,7 @@ inThisBuild(
     ),
     homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
     licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
-    scalaVersion := "3.2.0",
+    scalaVersion := "3.2.2",
     crossScalaVersions := Seq(scalaVersion.value)
   )
 )
@@ -26,7 +25,7 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
     ),
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core"           % catsVersion,
-      "org.scalatest" %%% "scalatest"           % "3.2.14",
-      "org.typelevel" %%% "shapeless3-typeable" % "3.0.1"
+      "org.scalatest" %%% "scalatest"           % "3.2.15",
+      "org.typelevel" %%% "shapeless3-typeable" % "3.3.0"
     )
   )
