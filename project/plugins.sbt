@@ -3,7 +3,7 @@ addSbtPlugin("org.scalastyle"    %% "scalastyle-sbt-plugin"    % "1.0.0")
 addSbtPlugin("org.scoverage"      % "sbt-scoverage"            % "2.0.7")
 addSbtPlugin("org.portable-scala" % "sbt-scalajs-crossproject" % "1.3.1")
 addSbtPlugin("org.scala-js"       % "sbt-scalajs"              % "1.13.1")
-addSbtPlugin("com.github.sbt"     % "sbt-ci-release"           % "1.5.11")
+addSbtPlugin("com.github.sbt"     % "sbt-ci-release"           % "1.5.12")
 
 // workaround for conflict between sbt-scoverage and scalastyle-sbt-plugin
 // https://github.com/scala/bug/issues/12632
