@@ -9,7 +9,7 @@ inThisBuild(
     ),
     homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
     licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
-    scalaVersion := "3.2.2",
+    scalaVersion := "3.3.0",
     crossScalaVersions := Seq(scalaVersion.value)
   )
 )
