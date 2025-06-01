@@ -43,7 +43,7 @@ trait EitherValues {
     def value: T =
       either match {
         case Right(right) => right
-        case Left(left) =>
+        case Left(left)   =>
           throw new TestFailedException(
             (_: StackDepthException) => Some(s"'$left' is a Left, expected a Right."),
             None,

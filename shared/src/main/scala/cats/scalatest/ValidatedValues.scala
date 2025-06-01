@@ -41,7 +41,7 @@ trait ValidatedValues {
   final class Validatable[E, T](validated: Validated[E, T], pos: source.Position) {
     def value: T =
       validated match {
-        case Valid(valid) => valid
+        case Valid(valid)  => valid
         case Invalid(left) =>
           throw new TestFailedException(
             (_: StackDepthException) => Some(s"'$left' is Invalid, expected Valid."),
@@ -72,7 +72,7 @@ trait ValidatedValues {
     def valid: Valid[T] =
       validated match {
         case valid: Valid[T] => valid
-        case _ =>
+        case _               =>
           throw new TestFailedException(
             (_: StackDepthException) => Some("The Validated on which valid was invoked was not a Valid."),
             None,
@@ -88,7 +88,7 @@ trait ValidatedValues {
     def invalid: Invalid[E] =
       validated match {
         case invalid: Invalid[E] => invalid
-        case _ =>
+        case _                   =>
           throw new TestFailedException(
             (_: StackDepthException) => Some("The Validated on which invalid was invoked was not an Invalid."),
             None,
