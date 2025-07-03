@@ -3,7 +3,6 @@ lazy val catsVersion = "2.13.0"
 inThisBuild(
   Seq(
     organization := "com.ironcorelabs",
-    sonatypeProfileName := organization.value,
     developers := List(
       Developer("coltfred", "Colt Frederickson", "coltfred+github@gmail.com", url("http://github.com/coltfred"))
     ),
