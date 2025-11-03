@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Restore caches
-      uses: coursier/cache-action@v6
+      uses: coursier/cache-action@v7
     - uses: coursier/setup-action@v1
       with:
         jvm: adopt:11
