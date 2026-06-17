@@ -12,7 +12,7 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ typelevel-nix.overlay ];
+          overlays = [ typelevel-nix.overlays.default ];
         };
 
         mkShell = jdk: pkgs.devshell.mkShell {
@@ -25,11 +25,11 @@
         };
       in
       rec {
-        devShell = devShells."temurin@11";
+        devShell = devShells."temurin@21";
 
         devShells = {
-          "temurin@11" = mkShell pkgs.temurin-bin-11;
-          "temurin@17" = mkShell pkgs.temurin-bin-17;
+          "temurin@21" = mkShell pkgs.temurin-bin-21;
+          "temurin@25" = mkShell pkgs.temurin-bin-25;
         };
       }
     );
