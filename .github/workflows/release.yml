@@ -7,10 +7,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: olafurpg/setup-scala@v13
+      - uses: coursier/setup-action@v3
+        with:
+          jvm: adopt:11
+          apps: sbt
       - run: sbt ci-release
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
