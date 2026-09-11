@@ -191,6 +191,15 @@ The same is true for the `Validated`. If you import or mixin `ValidatedValues` y
 - Yell at [@IronCoreLabs](https://twitter.com/ironcorelabs) or [@coltfred](https://twitter.com/coltfred) on twitter.
 - Drop by the cats [gitter](https://gitter.im/non/cats).
 
+## Releasing
+
+Versions come from git tags via [sbt-ci-release](https://github.com/sbt/sbt-ci-release); there is no version file to edit. Pushing a `vX.Y.Z` tag on `main` runs the `Release` workflow, which publishes to Maven Central. Pushes to `main` without a tag publish a `-SNAPSHOT`.
+
+```
+git tag v4.0.3
+git push origin v4.0.3
+```
+
 ## Contributors
 
 - [Colt Frederickson](http://github.com/coltfred) [coltfred]

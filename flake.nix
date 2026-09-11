@@ -26,7 +26,8 @@
       in
       {
         devShells = rec {
-          default = temurin21;
+          default = temurin17;
+          temurin17 = mkShell pkgs.temurin-bin-17;
           temurin21 = mkShell pkgs.temurin-bin-21;
           temurin25 = mkShell pkgs.temurin-bin-25;
         };

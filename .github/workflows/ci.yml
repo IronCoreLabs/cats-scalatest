@@ -16,7 +16,7 @@ jobs:
       - name: Setup Scala
         uses: coursier/setup-action@v3
         with:
-          jvm: 21
+          jvm: 17
           apps: sbt
       - name: Run tests
         run: sbt +compile +test scalafmtCheckAll 'scalafixAll --check'
