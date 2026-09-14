@@ -50,3 +50,4 @@ src/jekyll/_tutorials
 .bsp
 .metals
 project/metals.sbt
+**/.direnv
