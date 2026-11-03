@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Restore caches
-        uses: coursier/cache-action@v8
+        uses: coursier/cache-action@v9
       - name: Setup Scala
         uses: coursier/setup-action@v3
         with:
