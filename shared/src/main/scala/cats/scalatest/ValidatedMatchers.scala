@@ -79,7 +79,7 @@ final private[scalatest] class HasACatsValidatedFailure[+T: Typeable] extends Ma
 
     MatchResult(
       validated.fold(
-        (n: NEL[_]) =>
+        (n: NEL[?]) =>
           (n.head :: n.tail).exists { e =>
             e.cast[T].isDefined
           },

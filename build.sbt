@@ -4,10 +4,10 @@ inThisBuild(
   Seq(
     organization := "com.ironcorelabs",
     developers := List(
-      Developer("coltfred", "Colt Frederickson", "coltfred+github@gmail.com", url("http://github.com/coltfred"))
+      Developer("coltfred", "Colt Frederickson", "coltfred+github@gmail.com", uri("http://github.com/coltfred"))
     ),
-    homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
-    licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
+    homepage := Some(uri("http://github.com/ironcorelabs/cats-scalatest")),
+    licenses := Seq("Apache-2.0" -> uri("http://www.opensource.org/licenses/Apache-2.0")),
     scalaVersion := "3.9.0",
     crossScalaVersions := Seq(scalaVersion.value)
   )

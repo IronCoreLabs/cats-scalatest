@@ -10,22 +10,22 @@ trait EitherMatchers {
   /**
    * Checks to see if `scala.util.Either` is a specific Left element.
    */
-  def beLeft[E](element: E): Matcher[E Either _] = new BeCatsLeftEither[E](element)
+  def beLeft[E](element: E): Matcher[Either[E, ?]] = new BeCatsLeftEither[E](element)
 
   /**
    * Checks to see if `scala.util.Either` is a `Left`.
    */
-  def left[E]: BeMatcher[E Either _] = new IsCatsLeftEitherMatcher[E]
+  def left[E]: BeMatcher[Either[E, ?]] = new IsCatsLeftEitherMatcher[E]
 
   /**
    * Checks to see if `scala.util.Either` is a specific Right element.
    */
-  def beRight[T](element: T): Matcher[_ Either T] = new BeCatsRightEitherMatcher[T](element)
+  def beRight[T](element: T): Matcher[Either[?, T]] = new BeCatsRightEitherMatcher[T](element)
 
   /**
    * Checks to see if `scala.util.Either` is a `Right`.
    */
-  def right[T]: BeMatcher[_ Either T] = new IsCatsRightEitherMatcher[T]
+  def right[T]: BeMatcher[Either[?, T]] = new IsCatsRightEitherMatcher[T]
 }
 
 /**
@@ -37,8 +37,8 @@ trait EitherMatchers {
  */
 object EitherMatchers extends EitherMatchers
 
-final private[scalatest] class BeCatsRightEitherMatcher[T](element: T) extends Matcher[_ Either T] {
-  def apply(either: _ Either T): MatchResult =
+final private[scalatest] class BeCatsRightEitherMatcher[T](element: T) extends Matcher[Either[?, T]] {
+  def apply(either: Either[?, T]): MatchResult =
     MatchResult(
       either.fold(_ => false, _ == element),
       s"'$either' did not contain an Right element matching '$element'.",
@@ -46,8 +46,8 @@ final private[scalatest] class BeCatsRightEitherMatcher[T](element: T) extends M
     )
 }
 
-final private[scalatest] class BeCatsLeftEither[E](element: E) extends Matcher[E Either _] {
-  def apply(either: E Either _): MatchResult =
+final private[scalatest] class BeCatsLeftEither[E](element: E) extends Matcher[Either[E, ?]] {
+  def apply(either: Either[E, ?]): MatchResult =
     MatchResult(
       either.fold(_ == element, _ => false),
       s"'$either' did not contain an Left element matching '$element'.",
@@ -55,8 +55,8 @@ final private[scalatest] class BeCatsLeftEither[E](element: E) extends Matcher[E
     )
 }
 
-final private[scalatest] class IsCatsLeftEitherMatcher[E] extends BeMatcher[E Either _] {
-  def apply(either: E Either _): MatchResult =
+final private[scalatest] class IsCatsLeftEitherMatcher[E] extends BeMatcher[Either[E, ?]] {
+  def apply(either: Either[E, ?]): MatchResult =
     MatchResult(
       either.isLeft,
       s"'$either' was not an Left, but should have been.",
@@ -64,8 +64,8 @@ final private[scalatest] class IsCatsLeftEitherMatcher[E] extends BeMatcher[E Ei
     )
 }
 
-final private[scalatest] class IsCatsRightEitherMatcher[T] extends BeMatcher[_ Either T] {
-  def apply(either: _ Either T): MatchResult =
+final private[scalatest] class IsCatsRightEitherMatcher[T] extends BeMatcher[Either[?, T]] {
+  def apply(either: Either[?, T]): MatchResult =
     MatchResult(
       either.isRight,
       s"'$either' was not an Right, but should have been.",
