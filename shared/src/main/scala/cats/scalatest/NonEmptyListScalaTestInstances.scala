@@ -1,6 +1,5 @@
 package cats.scalatest
 
-import scala.collection.GenTraversable
 import org.scalatest.enablers.Collecting
 import cats.data.NonEmptyList
 
@@ -15,7 +14,7 @@ trait NonEmptyListScalaTestInstances {
       override def loneElementOf(collection: NonEmptyList[A]): Option[A] =
         if (collection.tail.isEmpty) Some(collection.head) else None
       override def sizeOf(collection: NonEmptyList[A]): Int = collection.length
-      override def genTraversableFrom(collection: NonEmptyList[A]): GenTraversable[A] = collection.toList
+      override def genTraversableFrom(collection: NonEmptyList[A]): Iterable[A] = collection.toList
     }
 }
 

@@ -4,15 +4,15 @@ inThisBuild(
   Seq(
     organization := "com.ironcorelabs",
     developers := List(
-      Developer("coltfred", "Colt Frederickson", "coltfred+github@gmail.com", url("http://github.com/coltfred"))
+      Developer("coltfred", "Colt Frederickson", "coltfred+github@gmail.com", uri("http://github.com/coltfred"))
     ),
-    homepage := Some(url("http://github.com/ironcorelabs/cats-scalatest")),
-    licenses := Seq("Apache-2.0" -> url("http://www.opensource.org/licenses/Apache-2.0")),
+    homepage := Some(uri("http://github.com/ironcorelabs/cats-scalatest")),
+    licenses := Seq("Apache-2.0" -> uri("http://www.opensource.org/licenses/Apache-2.0")),
     scalaVersion := "3.9.0",
     crossScalaVersions := Seq(scalaVersion.value)
   )
 )
-publish / skip := true
+LocalRootProject / publish / skip := true
 
 lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Full)
@@ -23,8 +23,8 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
       "-unchecked"
     ),
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-core"           % catsVersion,
-      "org.scalatest" %%% "scalatest"           % "3.2.20",
-      "org.typelevel" %%% "shapeless3-typeable" % "3.6.0"
+      "org.typelevel" %% "cats-core"           % catsVersion,
+      "org.scalatest" %% "scalatest"           % "3.2.20",
+      "org.typelevel" %% "shapeless3-typeable" % "3.6.0"
     )
   )

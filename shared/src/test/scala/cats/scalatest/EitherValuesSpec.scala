@@ -8,12 +8,12 @@ class EitherValuesSpec extends TestBase {
 
   "value on Either" should {
     "return the value inside a Right if that Either is Right" in {
-      val r: String Either String = Right(thisRecord)
+      val r: Either[String, String] = Right(thisRecord)
       r.value should ===(thisRecord)
     }
 
     "should throw TestFailedException if that Either is a left " in {
-      val r: String Either String = Left(thisTobacconist)
+      val r: Either[String, String] = Left(thisTobacconist)
       val caught =
         intercept[TestFailedException] {
           r.value should ===(thisRecord)
