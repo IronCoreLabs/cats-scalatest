@@ -19,4 +19,4 @@ jobs:
           jvm: 17
           apps: sbt
       - name: Run tests
-        run: sbt +compile +test scalafmtCheckAll 'scalafixAll --check'
+        run: sbt "+compile; +test; scalafmtCheckAll; scalafixAll --check"

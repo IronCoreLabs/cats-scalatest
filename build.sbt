@@ -12,7 +12,7 @@ inThisBuild(
     crossScalaVersions := Seq(scalaVersion.value)
   )
 )
-publish / skip := true
+LocalRootProject / publish / skip := true
 
 lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Full)
@@ -23,8 +23,8 @@ lazy val `cats-scalatest` = crossProject(JVMPlatform, JSPlatform)
       "-unchecked"
     ),
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-core"           % catsVersion,
-      "org.scalatest" %%% "scalatest"           % "3.2.20",
-      "org.typelevel" %%% "shapeless3-typeable" % "3.6.0"
+      "org.typelevel" %% "cats-core"           % catsVersion,
+      "org.scalatest" %% "scalatest"           % "3.2.20",
+      "org.typelevel" %% "shapeless3-typeable" % "3.6.0"
     )
   )
